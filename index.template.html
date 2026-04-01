@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melbourne June 2026 — Family Trip Builder</title>
+<style>
+:root {
+  --bg:#f5f6fa; --card:#fff; --accent:#2563eb; --accent-light:#dbeafe; --accent-dark:#1e40af;
+  --text:#1e293b; --muted:#64748b; --border:#e2e8f0;
+  --teal:#0d9488; --teal-l:#ccfbf1;
+  --pink:#db2777; --pink-l:#fce7f3;
+  --purple:#7c3aed; --purple-l:#f3e8ff;
+  --orange:#ea580c; --orange-l:#fff7ed;
+  --amber:#b45309; --amber-l:#fef3c7;
+  --green:#16a34a; --green-l:#dcfce7;
+  --red:#e11d48; --red-l:#fef2f2;
+  --radius:12px;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --shadow-lg:0 4px 12px rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+
+.app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:440px;min-width:400px;display:flex;flex-direction:column;background:var(--card);border-right:1px solid var(--border);z-index:10;}
+.map-area{flex:1;position:relative;}
+#map{height:100%;width:100%;}
+
+.sb-header{padding:20px 20px 12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.sb-header h1{font-size:1.15rem;font-weight:800;color:var(--accent-dark);}
+.sb-header .sub{font-size:.82rem;color:var(--muted);margin-top:2px;}
+
+.sb-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
+.sb-tab{flex:1;padding:10px 8px;text-align:center;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;}
+.sb-tab:hover{color:var(--text);}
+.sb-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+.sb-panel{display:none;flex:1;overflow-y:auto;padding:0;}
+.sb-panel.active{display:block;}
+
+/* ITINERARY */
+.day-block{border-bottom:1px solid var(--border);}
+.day-header{display:flex;align-items:center;padding:12px 16px;gap:10px;cursor:pointer;user-select:none;transition:background .15s;}
+.day-header:hover{background:#f8fafc;}
+.day-num{width:28px;height:28px;background:var(--accent);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;}
+.day-label{flex:1;font-weight:650;font-size:.9rem;cursor:text;}
+.day-label-input{flex:1;font-weight:650;font-size:.9rem;border:1px solid var(--accent);border-radius:4px;padding:2px 6px;outline:none;font-family:inherit;background:var(--accent-light);}
+.day-chevron{width:16px;height:16px;color:var(--muted);transition:transform .2s;}
+.day-block.collapsed .day-chevron{transform:rotate(-90deg);}
+.day-block.collapsed .day-body{display:none;}
+.day-body{padding:0 16px 12px;}
+
+.stop{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9;cursor:pointer;transition:background .1s;border-radius:6px;}
+.stop:last-child{border-bottom:none;}
+.stop:hover{background:#f8fafc;}
+.stop-thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--bg);}
+.stop-thumb-placeholder{width:48px;height:48px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.stop-info{flex:1;min-width:0;}
+.stop-name{font-size:.85rem;font-weight:600;}
+.stop-desc{font-size:.76rem;color:var(--muted);}
+.stop-remove{background:none;border:none;color:#cbd5e1;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:4px;flex-shrink:0;}
+.stop-remove:hover{color:var(--red);background:var(--red-l);}
+.add-stop-hint{font-size:.78rem;color:var(--muted);padding:8px 0;font-style:italic;text-align:center;}
+
+/* EXPLORE */
+.cat-section{border-bottom:1px solid var(--border);}
+.cat-header{display:flex;align-items:center;padding:12px 16px;gap:8px;cursor:pointer;user-select:none;}
+.cat-header:hover{background:#f8fafc;}
+.cat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.cat-label{flex:1;font-weight:650;font-size:.88rem;}
+.cat-count{font-size:.72rem;color:var(--muted);background:var(--bg);padding:1px 8px;border-radius:10px;}
+.cat-chevron{width:16px;height:16px;color:var(--muted);transition:transform .2s;}
+.cat-section.collapsed .cat-chevron{transform:rotate(-90deg);}
+.cat-section.collapsed .cat-body{display:none;}
+.cat-body{padding:0 16px 8px;}
+
+.poi-card{display:flex;align-items:flex-start;gap:10px;padding:8px;border:1px solid var(--border);border-radius:8px;margin-bottom:6px;cursor:pointer;transition:all .12s;font-size:.83rem;}
+.poi-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.poi-card.on-itinerary{background:var(--accent-light);border-color:var(--accent);}
+.poi-thumb{width:64px;height:56px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--bg);}
+.poi-thumb-placeholder{width:64px;height:56px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.poi-info{flex:1;min-width:0;}
+.poi-name{font-weight:600;font-size:.84rem;}
+.poi-desc{font-size:.74rem;color:var(--muted);margin-top:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.poi-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px;}
+.poi-tag{font-size:.64rem;font-weight:600;padding:1px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px;}
+.poi-add{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:.72rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;margin-top:2px;transition:background .15s;}
+.poi-add:hover{background:var(--accent-dark);}
+.poi-add.added{background:#94a3b8;cursor:default;}
+
+/* INFO */
+.info-panel{padding:16px;}
+.info-section{margin-bottom:16px;}
+.info-section h3{font-size:.92rem;font-weight:700;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.info-item{font-size:.84rem;padding:4px 0;color:var(--muted);}
+.info-item strong{color:var(--text);}
+.info-item a{color:var(--accent);}
+
+/* MAP OVERLAYS */
+.map-legend{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow-lg);font-size:.76rem;}
+.map-legend h4{font-size:.72rem;text-transform:uppercase;color:var(--muted);letter-spacing:.5px;margin-bottom:6px;}
+.ml-item{display:flex;align-items:center;gap:6px;padding:2px 0;cursor:pointer;}
+.ml-item:hover{opacity:.7;}
+.ml-item.dimmed{opacity:.3;}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+.map-day-bar{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:5;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-radius:12px;padding:8px;box-shadow:0 4px 20px rgba(0,0,0,.18);display:flex;gap:5px;border:1px solid var(--border);}
+.mdb{padding:8px 16px;border-radius:8px;border:2px solid transparent;font-size:.82rem;font-weight:700;cursor:pointer;background:none;color:var(--muted);transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+.mdb:hover{background:#f1f5f9;border-color:var(--border);}
+.mdb.active{color:#fff;border-color:transparent;}
+.mdb .day-color-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* MAP STYLE TOGGLE */
+.map-style-toggle{position:absolute;top:12px;left:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-radius:10px;box-shadow:var(--shadow-lg);overflow:hidden;display:flex;flex-direction:column;}
+.map-style-toggle h4{font-size:.72rem;text-transform:uppercase;color:var(--muted);letter-spacing:.5px;padding:8px 12px 4px;}
+.mst-btn{display:flex;align-items:center;gap:8px;padding:6px 12px;border:none;background:none;cursor:pointer;font-size:.76rem;font-weight:500;color:var(--text);transition:all .12s;width:100%;text-align:left;}
+.mst-btn:hover{background:#f1f5f9;}
+.mst-btn.active{color:var(--accent);font-weight:700;background:var(--accent-light);}
+.mst-btn:last-child{padding-bottom:8px;}
+.mst-preview{width:28px;height:20px;border-radius:3px;flex-shrink:0;border:1px solid var(--border);}
+
+@media(max-width:800px){
+  .app{flex-direction:column;height:100vh;height:100dvh;}
+  .map-area{height:40vh;height:40dvh;min-height:200px;flex-shrink:0;order:0;}
+  .sidebar{width:100%;min-width:0;flex:1;border-right:none;border-top:1px solid var(--border);order:1;overflow:hidden;}
+  .sb-header h1{font-size:1rem;}
+  .sb-header{padding:14px 16px 8px;}
+  .sb-header .sub{font-size:.76rem;}
+  .sb-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .sb-tab{padding:8px 6px;font-size:.78rem;white-space:nowrap;}
+
+  /* Map overlays */
+  .map-legend{top:8px;right:8px;padding:8px 10px;font-size:.7rem;max-height:40vh;overflow-y:auto;}
+  .map-legend h4{font-size:.66rem;margin-bottom:4px;}
+  .ml-dot{width:8px;height:8px;}
+  .map-style-toggle{top:8px;left:8px;font-size:.7rem;}
+  .map-style-toggle h4{font-size:.66rem;padding:6px 10px 2px;}
+  .mst-btn{padding:4px 10px;font-size:.7rem;}
+  .mst-preview{width:22px;height:16px;}
+  .map-day-bar{bottom:8px;padding:4px;gap:3px;max-width:95vw;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;}
+  .mdb{padding:6px 10px;font-size:.72rem;flex-shrink:0;}
+  .mdb .day-color-dot{width:6px;height:6px;}
+
+  /* Itinerary */
+  .day-header{padding:10px 12px;gap:8px;}
+  .day-num{width:24px;height:24px;font-size:.72rem;}
+  .day-label{font-size:.84rem;}
+  .day-body{padding:0 12px 10px;}
+  .stop{gap:8px;padding:6px 0;}
+  .stop-thumb,.stop-thumb-placeholder{width:40px;height:40px;border-radius:6px;font-size:.9rem;}
+  .stop-name{font-size:.8rem;}
+  .stop-desc{font-size:.72rem;}
+  .add-stop-hint{font-size:.72rem;padding:6px 0;}
+
+  /* Explore */
+  .cat-header{padding:10px 12px;}
+  .cat-label{font-size:.82rem;}
+  .cat-body{padding:0 12px 6px;}
+  .poi-card{padding:6px;gap:8px;}
+  .poi-thumb,.poi-thumb-placeholder{width:52px;height:46px;font-size:1.1rem;}
+  .poi-name{font-size:.8rem;}
+  .poi-desc{font-size:.7rem;}
+  .poi-add{padding:3px 8px;font-size:.68rem;}
+
+  /* Info */
+  .info-panel{padding:12px;}
+  .info-section h3{font-size:.86rem;}
+  .info-item{font-size:.78rem;}
+}
+
+@media(max-width:400px){
+  .map-area{height:35vh;height:35dvh;}
+  .map-legend{display:none;}
+  .map-style-toggle{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="sidebar">
+    <div class="sb-header">
+      <h1>Melbourne Family Trip Builder</h1>
+      <div class="sub">Family of 4 &middot; Kids 4 &amp; 9 &middot; June 2026 (Week 1 or 2)</div>
+    </div>
+    <div class="sb-tabs">
+      <button class="sb-tab active" data-panel="itinerary">Itinerary</button>
+      <button class="sb-tab" data-panel="explore">Explore</button>
+      <button class="sb-tab" data-panel="info">Info &amp; Tips</button>
+    </div>
+    <div class="sb-panel active" id="panel-itinerary"></div>
+    <div class="sb-panel" id="panel-explore"></div>
+    <div class="sb-panel" id="panel-info">
+      <div class="info-panel">
+        <div class="info-section"><h3>Weather</h3><div class="info-item">7&ndash;14&deg;C, frequent rain, sunset ~5:10pm. Pack warm layers and rain jackets daily.</div></div>
+        <div class="info-section"><h3>Transport</h3><div class="info-item"><strong>Myki cards:</strong> Available at 7-Eleven or stations. Kids under 5 free. Concession for under-16s.</div><div class="info-item"><strong>Free Tram Zone:</strong> Covers CBD, Docklands, and parts of Southbank.</div></div>
+        <div class="info-section"><h3>Timing</h3><div class="info-item">Early June is <strong>before school holidays</strong> (27 Jun) &mdash; less crowded, lower prices.</div><div class="info-item"><strong>RISING Festival</strong> runs 27 May &ndash; 8 Jun, so Week 1 overlaps with free installations.</div><div class="info-item"><strong>Queen Vic Night Market</strong> is every Wednesday evening &mdash; align Day 1 or 3 with a Wednesday if possible.</div></div>
+        <div class="info-section"><h3>Book Ahead</h3><div class="info-item">LEGOLAND, SEA LIFE, Puffing Billy, Lightscape, Cirque du Soleil &mdash; book online in advance.</div></div>
+        <div class="info-section"><h3>Free Activities</h3><div class="info-item">All playgrounds, State Library, ArtPlay, NGV, ACMI, Royal Botanic Gardens, St Kilda Pier penguins, RISING installations.</div></div>
+        <div class="info-section"><h3>Where to Stay</h3>
+          <div class="info-item">Browse all listings on the <strong>Explore tab &rarr; Accommodation</strong> section, or click the blue markers on the map.</div>
+          <div class="info-item" style="margin-top:8px;"><strong>CBD ($80&ndash;250/night)</strong> &mdash; Walk to everything, free tram zone. Best for first-timers.</div>
+          <div class="info-item"><strong>St Kilda ($130&ndash;220/night)</strong> &mdash; Beach, Luna Park, relaxed vibe. 30min tram to CBD.</div>
+          <div class="info-item"><strong>Southbank ($160&ndash;280/night)</strong> &mdash; River views, walk to CBD, NGV, Arts Centre.</div>
+          <div class="info-item"><strong>Richmond/Collingwood ($120&ndash;200/night)</strong> &mdash; Foodie hub, most affordable, near Children's Farm.</div>
+          <div class="info-item" style="margin-top:8px;font-size:.78rem;"><em>Tip: June is off-peak/winter &mdash; prices are lower than summer. Book 2+ bedrooms, filter &ldquo;family-friendly&rdquo;. Many hosts provide portacots, high chairs, and prams.</em></div>
+          <div class="info-item" style="margin-top:4px;font-size:.78rem;"><em>This trip uses <strong>2 Airbnbs</strong>: Yarra Valley first (Days 1&ndash;3, 3 nights) then Melbourne CBD for the rest (Days 4&ndash;8, 5 nights). No back-and-forth. YV cottages in Healesville/Yarra Glen with fenced yards, fireplaces, cubby houses from ~$150/night. See Accommodation in Explore tab.</em></div>
+        </div>
+        <div class="info-section"><h3>Useful Links</h3>
+          <div class="info-item"><a href="https://whatson.melbourne.vic.gov.au/things-to-do/family-and-kids" target="_blank">What's On Melbourne</a></div>
+          <div class="info-item"><a href="https://busycitykids.com.au/melbourne-calendar-events" target="_blank">Busy City Kids Calendar</a></div>
+          <div class="info-item"><a href="https://2026.rising.melbourne/" target="_blank">RISING Festival 2026</a></div>
+          <div class="info-item"><a href="https://tothotornot.com/best-playgrounds-melbourne/" target="_blank">Playground Guide (65 playgrounds)</a></div>
+          <div class="info-item"><a href="https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne" target="_blank">Family-Friendly Restaurants</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map-area">
+    <div id="map"></div>
+    <div class="map-style-toggle" id="mapStyleToggle"></div>
+    <div class="map-legend" id="mapLegend"></div>
+    <div class="map-day-bar" id="dayBar"></div>
+  </div>
+</div>
+
+<script>
+const API_KEY = '__GOOGLE_MAPS_API_KEY__';
+
+// ============ POI DATA ============
+const POIS = [
+  // PLAYGROUNDS
+  {id:'royal-park',cat:'playground',name:'Royal Park Nature Playground',area:'Parkville',lat:-37.7812,lng:144.9520,desc:"Melbourne's best. Mega slides, climbing ropes, high-ropes (9yo), sand & water play (4yo). Next to Zoo.",tags:['free'],ref:'https://whatson.melbourne.vic.gov.au/article/the-best-playgrounds-in-melbourne',icon:'\u26F3'},
+  {id:'birrarung-marr',cat:'playground',name:'Birrarung Marr / ArtPlay',area:'CBD',lat:-37.8185,lng:144.9730,desc:'Riverside playground near Fed Square. Slides, sandpits, hammocks. Free ArtPlay art workshops.',tags:['free'],ref:'https://www.melbourne.vic.gov.au/playgrounds',icon:'\u{1F3A8}'},
+  {id:'carlton-gardens',cat:'playground',name:'Carlton Gardens Playground',area:'Carlton',lat:-37.8054,lng:144.9715,desc:'Flying fox, rope bridges, maze under 150yo fig trees. Toddler section. Next to Melbourne Museum.',tags:['free'],ref:'https://www.ellaslist.com.au/articles/best-playgrounds-for-kids-in-melbourne',icon:'\u{1F333}'},
+  {id:'flagstaff',cat:'playground',name:'Flagstaff Gardens',area:'CBD',lat:-37.8115,lng:144.9540,desc:'Shaded play equipment, open lawns. Walk to Queen Vic Market.',tags:['free'],ref:'https://mammaknowsmelbourne.com.au/melbourne-parks-gardens',icon:'\u{1F332}'},
+  {id:'princes-park',cat:'playground',name:'Princes Park Playground',area:'Caulfield (20min)',lat:-37.8807,lng:145.0220,desc:'Multi-level climbing structure, twisty slides, flying fox. Toddler-safe options.',tags:['free'],ref:'https://www.ellaslist.com.au/articles/best-playgrounds-for-kids-in-melbourne',icon:'\u{1F3A2}'},
+  {id:'pipemakers',cat:'playground',name:"Pipemaker's Park",area:'Maribyrnong (25min)',lat:-37.7720,lng:144.8820,desc:'8 hectares. Giant climbing fort, musical instruments, water play, free BBQs. Indigenous artworks.',tags:['free'],ref:'https://www.melbourneplaygrounds.com.au/adventure-playgrounds-in-melbourne',icon:'\u{1F3F0}'},
+  {id:'diamond-creek',cat:'playground',name:'Diamond Creek Playspace',area:'Diamond Creek (35min)',lat:-37.6710,lng:145.1520,desc:'Mega sandpit, climbing frames, digging pits, wooden tunnels, water pumps, parkour station.',tags:['free'],ref:'https://tothotornot.com/best-playgrounds-melbourne/',icon:'\u{1F3D6}'},
+  {id:'frontier-park',cat:'playground',name:'Frontier Park',area:'Aintree (30min)',lat:-37.7180,lng:144.7420,desc:'Three huge towers, massive slides, pentagon swings, water fountains & pumps.',tags:['free'],ref:'https://tothotornot.com/best-playgrounds-melbourne/',icon:'\u{1F3E0}'},
+  // EVENTS
+  {id:'rising',cat:'event',name:'RISING Festival',area:'CBD-wide',lat:-37.8212,lng:144.9685,desc:'27 May\u20138 Jun. 105+ events \u2014 outdoor installations, light, dance, theatre. Many free.',tags:['free'],ref:'https://2026.rising.melbourne/',icon:'\u2728'},
+  {id:'lightscape',cat:'event',name:'Lightscape',area:'Royal Botanic Gardens',lat:-37.8305,lng:144.9800,desc:'Illuminated trail. Giant LED sphere, singing trees, fire garden. ~$40/adult.',tags:[],ref:'https://misformelbourne.com/june-in-melbourne-australia/',icon:'\u{1F4A1}'},
+  {id:'firelight',cat:'event',name:'Firelight Festival',area:'Docklands',lat:-37.8145,lng:144.9395,desc:'Free fire installations, laser shows, fire twirlers, Firelight Labyrinth maze.',tags:['free'],ref:'https://whatson.melbourne.vic.gov.au/things-to-do/whats-on-june',icon:'\u{1F525}'},
+  {id:'kooza',cat:'event',name:'Cirque du Soleil \u2014 KOOZA',area:'Flemington',lat:-37.7880,lng:144.9120,desc:'Through 28 Jun. Spectacular acrobatics & clowning. From $79. Best for 9yo.',tags:[],ref:'https://feverup.com/en/melbourne/family',icon:'\u{1F3AA}'},
+  {id:'night-market',cat:'event',name:'Queen Vic Winter Night Market',area:'CBD',lat:-37.8076,lng:144.9568,desc:'Every Wednesday evening. Street food, live entertainment, shopping.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/things-to-do/whats-on-june',icon:'\u{1F3EA}'},
+  // INDOOR
+  {id:'legoland',cat:'indoor',name:'LEGOLAND Discovery Centre',area:'Chadstone',lat:-37.8860,lng:145.0840,desc:'DUPLO Farm (4yo), LEGO Racers (9yo). Ages 3\u201310.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F9F1}'},
+  {id:'sealife',cat:'indoor',name:'SEA LIFE Aquarium',area:'CBD',lat:-37.8205,lng:144.9580,desc:'Underwater tunnels, penguin encounters, touch pools.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F420}'},
+  {id:'melbourne-museum',cat:'indoor',name:'Melbourne Museum',area:'Carlton',lat:-37.8032,lng:144.9717,desc:"Children's Gallery (under 5s), dinosaurs (9yo). Next to Carlton Gardens.",tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3DB}'},
+  {id:'scienceworks',cat:'indoor',name:'Scienceworks',area:'Spotswood',lat:-37.8325,lng:144.8990,desc:'Live science demos, planetarium, hands-on galleries.',tags:[],ref:'https://www.visitvictoria.com/regions/melbourne/see-and-do/family-activities',icon:'\u{1F52C}'},
+  {id:'acmi',cat:'indoor',name:'ACMI',area:'Fed Square',lat:-37.8180,lng:144.9690,desc:'Playable videogame exhibition (1970s to today). Free entry.',tags:['free'],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3AE}'},
+  {id:'state-library',cat:'indoor',name:"State Library Children's Quarter",area:'CBD',lat:-37.8098,lng:144.9645,desc:'Free. Reading nooks, creative play areas, books.',tags:['free'],ref:'https://whatson.melbourne.vic.gov.au/article/melbournes-best-rainy-day-activities-for-kids',icon:'\u{1F4DA}'},
+  {id:'monopoly',cat:'indoor',name:'Monopoly Dreams',area:'CBD',lat:-37.8120,lng:144.9630,desc:'Immersive interactive Monopoly experience.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3B2}'},
+  {id:'ngv',cat:'indoor',name:'NGV (National Gallery)',area:'Southbank',lat:-37.8226,lng:144.9689,desc:"Free entry. Kids' programs & interactive family trails.",tags:['free'],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F5BC}'},
+  // WILDLIFE
+  {id:'melbourne-zoo',cat:'wildlife',name:'Melbourne Zoo',area:'Parkville',lat:-37.7842,lng:144.9517,desc:'250+ species, Dino Trail. Kids free on weekends. Combine with Royal Park playground.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F418}'},
+  {id:'werribee-zoo',cat:'wildlife',name:'Werribee Open Range Zoo',area:'Werribee (35min)',lat:-37.9230,lng:144.6680,desc:'Smaller, great safari bus tour for young kids.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F992}'},
+  {id:'collingwood-farm',cat:'wildlife',name:"Collingwood Children's Farm",area:'Abbotsford',lat:-37.7995,lng:145.0105,desc:'Milk cows, feed chickens, pony rides, baby lambs.',tags:[],ref:'https://tothotornot.com/things-to-do-melbourne-babies-toddlers-kids/',icon:'\u{1F404}'},
+  {id:'botanic-gardens',cat:'wildlife',name:'Royal Botanic Gardens',area:'South Yarra',lat:-37.8304,lng:144.9796,desc:"Free. Ian Potter Children's Garden \u2014 water features, planting.",tags:['free'],ref:'https://www.australia.com/en-us/places/melbourne-and-surrounds/with-kids.html',icon:'\u{1F33F}'},
+  {id:'luna-park',cat:'wildlife',name:'Luna Park',area:'St Kilda',lat:-37.8677,lng:144.9763,desc:'Rides for all ages. Walk St Kilda Beach & see penguins at pier at dusk.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3A1}'},
+  // DAY TRIPS
+  {id:'puffing-billy',cat:'daytrip',name:'Puffing Billy Railway',area:'Belgrave (~1hr)',lat:-37.9080,lng:145.3540,desc:'Historic steam train through Dandenong Ranges. Stop at Sassafras for lunch.',tags:[],ref:'https://www.littledayout.com/melbourne-family-adventure-kids-nature-wildlife-snow/',icon:'\u{1F682}'},
+  {id:'healesville',cat:'daytrip',name:'Healesville Sanctuary',area:'Healesville (~1hr)',lat:-37.6540,lng:145.5260,desc:'Platypus, wombats, echidnas, bird shows in bushland.',tags:[],ref:'https://www.visitvictoria.com/regions/melbourne/see-and-do/family-activities',icon:'\u{1F428}'},
+  {id:'phillip-island',cat:'daytrip',name:'Phillip Island Penguin Parade',area:'Phillip Island (~2hr)',lat:-38.5110,lng:145.1330,desc:'Penguins waddle ashore at sunset. Dress very warm.',tags:[],ref:'https://www.littledayout.com/melbourne-family-adventure-kids-nature-wildlife-snow/',icon:'\u{1F427}'},
+  {id:'snow',cat:'daytrip',name:'Snow Day Trip',area:'Mt Buller (~2.5hr)',lat:-37.1460,lng:146.4390,desc:'Snow play, tobogganing. Check conditions. Lake Mountain closer for young kids.',tags:[],ref:'https://www.littledayout.com/melbourne-family-adventure-kids-nature-wildlife-snow/',icon:'\u26C4'},
+  {id:'yv-chocolaterie',cat:'daytrip',name:'Yarra Valley Chocolaterie',area:'Yarra Glen (~1hr)',lat:-37.6580,lng:145.3690,desc:'Free entry & tastings. Playground with slides & swings. Junior Chocolatier classes (45min, bookable). Huge hit with kids.',tags:['free'],ref:'https://mumslittleexplorers.com/things-to-do-yarra-valley-kids/',icon:'\u{1F36B}'},
+  {id:'yv-playground',cat:'daytrip',name:'Yarra Glen Adventure Playground',area:'Yarra Glen (~1hr)',lat:-37.6555,lng:145.3730,desc:'Large free adventure playground right in the Yarra Glen township. Great for burning energy.',tags:['free'],ref:'https://tothotornot.com/yarra-valley/',icon:'\u{1F3A0}'},
+  {id:'yv-donna-buang',cat:'daytrip',name:'Mt Donna Buang Snow Play',area:'Warburton (~1.5hr)',lat:-37.7170,lng:145.6800,desc:'Free access. Toboggan hire on site. Snow from mid-June. First snow experience for the kids. Warm up in Warburton village after.',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u26C4'},
+  {id:'yv-montsalvat',cat:'daytrip',name:'Montsalvat WinterFest',area:'Eltham (~40min)',lat:-37.7320,lng:145.1530,desc:'Historic artists\u2019 colony. WinterFest in June: live music, entertainment, food, mulled wine. Beautiful grounds.',tags:[],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u{1F3B5}'},
+  {id:'yv-edendale',cat:'daytrip',name:'Edendale Community Farm',area:'Eltham (~40min)',lat:-37.7280,lng:145.1470,desc:'Hands-on sustainable farm. Feed chickens, meet goats & guinea pigs. Great for 4yo.',tags:[],ref:'https://mumslittleexplorers.com/things-to-do-yarra-valley-kids/',icon:'\u{1F413}'},
+  {id:'yv-warburton',cat:'food',name:'Alpine Hotel Warburton',area:'Warburton (~1.5hr)',lat:-37.7530,lng:145.6900,desc:'Fireside winter meals at the base of Mt Donna Buang. Rustic elegance, seasonal menu. Perfect post-snow warm-up.',tags:[],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u{1F525}'},
+  {id:'yv-rayners',cat:'daytrip',name:'Rayner\u2019s Orchard',area:'Woori Yallock (~1hr)',lat:-37.7740,lng:145.5280,desc:'Tractor fruit-tasting tour daily. 450+ fruit varieties. Winter: citrus picking. Kids love the tractor ride. Book ahead.',tags:[],ref:'https://www.visityarravalley.com.au/products/rayners-orchard-1',icon:'\u{1F34A}'},
+  {id:'yv-tarrawarra',cat:'daytrip',name:'TarraWarra Museum of Art',area:'Healesville (~1hr)',lat:-37.6840,lng:145.4590,desc:'Award-winning gallery in stunning bush setting. Modern & contemporary Australian art. Rotating exhibitions. Caf\u00e9 on site.',tags:[],ref:'https://www.visitvictoria.com/regions/yarra-valley-and-dandenong-ranges/see-and-do/family',icon:'\u{1F5BC}'},
+  {id:'yv-rainforest',cat:'daytrip',name:'Rainforest Gallery (Mt Donna Buang)',area:'Warburton (~1.5hr)',lat:-37.7150,lng:145.6750,desc:'Suspended walkway through ancient rainforest canopy. Short easy walk, magical in winter mist. Combine with snow at the summit.',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u{1F332}'},
+  {id:'yv-redwood',cat:'daytrip',name:'Redwood Forest',area:'Warburton (~1.5hr)',lat:-37.7570,lng:145.6600,desc:'Towering California redwoods in the Victorian bush. Magical pathways, great for photos. Easy flat walk with kids.',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/children-are-free-in-the-warburton-valley-top-activities',icon:'\u{1F333}'},
+  {id:'yv-healesville-hotel',cat:'food',name:'The Healesville Hotel',area:'Healesville',lat:-37.6545,lng:145.5190,desc:'Family-friendly pub with backyard picnic area under elm trees. Great winter pub grub.',tags:[],ref:'https://www.tripadvisor.com/Restaurants-g1575072-zfp5-Yarra_Valley_Victoria.html',icon:'\u{1F37A}'},
+  {id:'yv-mylittlekitchen',cat:'food',name:'My Little Kitchen',area:'Healesville',lat:-37.6530,lng:145.5210,desc:'Loved brunch/lunch spot. Kid-friendly menu, heated outdoor seating for winter. Must-visit.',tags:[],ref:'https://www.mammaknowseast.com.au/eats-content/tag/yarra+valley+eats',icon:'\u{1F950}'},
+  {id:'yv-zonzo',cat:'food',name:'Zonzo Estate',area:'Yarra Glen',lat:-37.6680,lng:145.3800,desc:'Stunning vineyard restaurant. Kid-friendly options, generous portions. Beautiful setting.',tags:[],ref:'https://www.tripadvisor.com/Restaurants-g1575072-zfp5-Yarra_Valley_Victoria.html',icon:'\u{1F377}'},
+  // RESTAURANTS
+  {id:'brunetti',cat:'food',name:'Brunetti Classico',area:'Lygon St, Carlton',lat:-37.8005,lng:144.9665,desc:'Iconic Italian. Kids menu: bunny pizza, pasta, lasagna, nutella piadina.',tags:[],ref:'https://www.tripadvisor.com.au/Restaurants-g255100-zfn7620467-zfp5-Melbourne_Victoria.html',icon:'\u{1F355}'},
+  {id:'universal',cat:'food',name:'Universal',area:'Lygon St, Carlton',lat:-37.8010,lng:144.9668,desc:'Italian since 1969. Large portions, stroller storage, colouring pages.',tags:[],ref:'https://www.tripadvisor.com.au/Restaurants-g255100-zfn7620467-zfp5-Melbourne_Victoria.html',icon:'\u{1F35D}'},
+  {id:'chocolate-buddha',cat:'food',name:'Chocolate Buddha',area:'Fed Square',lat:-37.8178,lng:144.9700,desc:'Shinkansen sushi train. Kids menu: ramen, dumplings, bento boxes.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u{1F363}'},
+  {id:'new-shanghai',cat:'food',name:'New Shanghai',area:'Emporium, CBD',lat:-37.8125,lng:144.9635,desc:'High chairs, pram room. Great dumplings and noodles.',tags:[],ref:'https://www.thetokyochapter.com/other-countries-melbourne-cbd-where-to-eat-with-kids/',icon:'\u{1F95F}'},
+  {id:'crinitis',cat:'food',name:"Criniti's",area:'Southbank',lat:-37.8230,lng:144.9610,desc:'Italian on the water. Room for kids to play. Mains ~$20\u201325.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u{1F37D}'},
+  {id:'mr-wolf',cat:'food',name:'Mr. Wolf',area:'St Kilda',lat:-37.8670,lng:144.9785,desc:'Italian. Free kids sundae if meal ordered before 6:30pm.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u{1F368}'},
+  {id:'beachcomber',cat:'food',name:'Beachcomber Caf\u00e9',area:'St Kilda Beach',lat:-37.8685,lng:144.9735,desc:'Right on the beach. Kids play in sand while parents eat.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u2615'},
+  {id:'radio-mexico',cat:'food',name:'Radio Mexico',area:'St Kilda',lat:-37.8660,lng:144.9755,desc:'Near Luna Park. Vibrant, lots of menu choices. High chairs.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u{1F32E}'},
+  {id:'stomping-ground',cat:'food',name:'Stomping Ground Brewery',area:'Collingwood',lat:-37.7990,lng:145.0000,desc:'Family-friendly brewery. Indoor play area with cubby house.',tags:[],ref:'https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne',icon:'\u{1F37A}'},
+  {id:'farm-cafe',cat:'food',name:'The Farm Caf\u00e9',area:'Collingwood Farm',lat:-37.7998,lng:145.0110,desc:"At Collingwood Children's Farm. Great brunch. Busy market Saturdays.",tags:[],ref:'https://mammaknowsmelbourne.com.au/places-to-eat',icon:'\u{1F950}'},
+  {id:'top-paddock',cat:'food',name:'Top Paddock',area:'Richmond',lat:-37.8270,lng:144.9960,desc:'Popular family breakfast & lunch. Reservations recommended weekends.',tags:[],ref:'https://mammaknowsmelbourne.com.au/places-to-eat',icon:'\u{1F373}'},
+  {id:'lakeside-zoo',cat:'food',name:'Lakeside Caf\u00e9 (Zoo)',area:'Melbourne Zoo',lat:-37.7850,lng:144.9510,desc:'Inside the zoo. Fresh local ingredients. Bakery, breakfast, lunch.',tags:[],ref:'https://www.zoo.org.au/melbourne/food-and-facilities/where-to-eat/',icon:'\u{1F966}'},
+  {id:'south-melb-market',cat:'food',name:'South Melbourne Market',area:'South Melbourne',lat:-37.8326,lng:144.9570,desc:'Iconic market. Family brunch, dim sims, pastries, fresh produce.',tags:[],ref:'https://mammaknowssouth.com.au/eats',icon:'\u{1F6D2}'},
+  {id:'hunky-dory',cat:'food',name:'Hunky Dory Fish & Chips',area:'Richmond',lat:-37.8244,lng:145.0020,desc:'Kids menu: nuggets, calamari, fish bites. Street parking.',tags:[],ref:'https://mammaknowsmelbourne.com.au/places-to-eat',icon:'\u{1F35F}'},
+  // ACCOMMODATION
+  {id:'airbnb-cbd-1',cat:'stay',name:'Huge 2BR CBD Pad + Netflix',area:'CBD \u2014 Free Tram Zone',lat:-37.8130,lng:144.9620,desc:'Spacious 2-bed CBD apartment. Netflix, great location near everything. In the free tram zone.',tags:[],ref:'https://www.airbnb.com/rooms/7735768',icon:'\u{1F3E2}'},
+  {id:'airbnb-cbd-2',cat:'stay',name:'CBD Skyline 2BR Apartment',area:'CBD',lat:-37.8145,lng:144.9640,desc:'High-level 2-bed with city skyline views. Freshly furnished. From ~$145/night.',tags:[],ref:'https://www.airbnb.com/rooms/853330587991256020',icon:'\u{1F303}'},
+  {id:'airbnb-cbd-3',cat:'stay',name:'Chic 2-Bed CBD with Pool & Sauna',area:'CBD',lat:-37.8105,lng:144.9625,desc:'Modern 2-bed/2-bath near Melbourne Central. Building has pool, gym, sauna.',tags:[],ref:'https://www.airbnb.com/rooms/1201733678651725514',icon:'\u{1F3CA}'},
+  {id:'airbnb-cbd-4',cat:'stay',name:'CBD 2BR Free Tram Zone',area:'CBD',lat:-37.8118,lng:144.9558,desc:'2-bed apartment next to Southern Cross Station. Free tram zone, supermarket nearby. ~$80/night.',tags:[],ref:'https://www.airbnb.com/rooms/26237324',icon:'\u{1F689}'},
+  {id:'airbnb-cbd-5',cat:'stay',name:'2BR near CBD (Carlton)',area:'Carlton',lat:-37.8050,lng:144.9680,desc:'Spacious 2-bed/2-bath serviced apartment in Carlton. Walk to Lygon St and Melbourne Museum.',tags:[],ref:'https://www.airbnb.com/rooms/50636065',icon:'\u{1F4CD}'},
+  {id:'airbnb-stkilda-1',cat:'stay',name:'Art Deco Family Apartment',area:'St Kilda',lat:-37.8670,lng:144.9790,desc:'Classic Art Deco apartment. Family-friendly, great St Kilda location near beach and Luna Park.',tags:[],ref:'https://www.airbnb.com/rooms/9612993',icon:'\u{1F3D6}'},
+  {id:'airbnb-stkilda-2',cat:'stay',name:'St Kilda Family-Friendly Stays',area:'St Kilda',lat:-37.8685,lng:144.9745,desc:'Browse family-friendly apartments near the beach. Portacots, high chairs, prams often available. 30min tram to CBD.',tags:[],ref:'https://www.airbnb.com/st-kilda-australia/stays/family-friendly',icon:'\u{1F3D6}'},
+  {id:'airbnb-stkilda-3',cat:'stay',name:'St Kilda West Beachfront',area:'St Kilda West',lat:-37.8620,lng:144.9700,desc:'2-bed/2-bath across from the beach. Near Sea Baths and Beaconsfield Parade promenade.',tags:[],ref:'https://www.airbnb.com/saint-kilda-west-australia/stays/family-friendly',icon:'\u{1F30A}'},
+  {id:'airbnb-southbank-1',cat:'stay',name:'Family Getaway opp. Crown',area:'Southbank',lat:-37.8228,lng:144.9590,desc:'Family-focused Southbank apartment opposite Crown Complex. Walk to CBD, NGV, Arts Centre.',tags:[],ref:'https://www.airbnb.com/rooms/1470931141979650075',icon:'\u{1F309}'},
+  {id:'airbnb-southbank-2',cat:'stay',name:'Ocean-View 2BR near Crown',area:'Southbank',lat:-37.8240,lng:144.9605,desc:'2-bed/2-bath with ocean and city views near Crown Casino. Great family base.',tags:[],ref:'https://www.airbnb.com/rooms/1410838856892449554',icon:'\u{1F304}'},
+  {id:'airbnb-southbank-3',cat:'stay',name:'Melbourne Square Apartment',area:'Southbank',lat:-37.8255,lng:144.9615,desc:'Modern apartment in Melbourne Square. Views, pool, close to South Melbourne Market.',tags:[],ref:'https://www.airbnb.com/rooms/737497942198688222',icon:'\u{1F3D9}'},
+  {id:'airbnb-richmond-1',cat:'stay',name:'Richmond Apartments',area:'Richmond',lat:-37.8180,lng:144.9950,desc:'Spacious apartments near MCG, Yarra River and Botanic Gardens. Walk to Victoria St food strip. From ~$120/night.',tags:[],ref:'https://www.airbnb.com/richmond-yarra-city-australia/stays/apartments',icon:'\u{1F33F}'},
+  {id:'airbnb-collingwood-1',cat:'stay',name:'Collingwood Family-Friendly',area:'Collingwood',lat:-37.7985,lng:145.0010,desc:'Light-filled apartments in creative Collingwood. Near Children\u2019s Farm, caf\u00e9s, street art. 10min tram to CBD.',tags:[],ref:'https://www.airbnb.com/collingwood-australia/stays/family-friendly',icon:'\u{1F3A8}'},
+  {id:'airbnb-yv-healesville',cat:'stay',name:'Healesville Family Cottages',area:'Healesville (Yarra Valley)',lat:-37.6535,lng:145.5200,desc:'Family cottages & houses with fenced yards, fireplaces, cubby houses. Walk to town. Perfect overnight base for 2-day YV trip.',tags:[],ref:'https://www.airbnb.com/healesville-australia/stays/family-friendly',icon:'\u{1F3E1}'},
+  {id:'airbnb-yv-yarraglen',cat:'stay',name:'Yarra Glen Family Stays',area:'Yarra Glen (Yarra Valley)',lat:-37.6560,lng:145.3740,desc:'Cottages on acreage with playhouses, slides, fire pits. Near Chocolaterie & wineries. Great for kids.',tags:[],ref:'https://www.airbnb.com/yarra-glen-australia/stays/family-friendly',icon:'\u{1F333}'},
+];
+
+const CATS = {
+  playground:{label:'Playgrounds',color:'#0d9488'},
+  event:{label:'Events',color:'#db2777'},
+  indoor:{label:'Indoor',color:'#7c3aed'},
+  wildlife:{label:'Wildlife & Outdoor',color:'#ea580c'},
+  daytrip:{label:'Day Trips',color:'#b45309'},
+  food:{label:'Restaurants & Caf\u00e9s',color:'#16a34a'},
+  stay:{label:'Accommodation',color:'#2563eb'},
+};
+
+const DEFAULT_ITINERARY = [
+  // === AIRBNB 1: YARRA VALLEY (3 nights \u2014 arrive, explore YV first) ===
+  {label:'Arrive & Eltham to Yarra Glen', stops:['yv-montsalvat','yv-edendale','yv-chocolaterie','yv-playground','yv-zonzo']},
+  {label:'Yarra Valley \u2014 Wildlife & Orchards', stops:['healesville','yv-rayners','yv-tarrawarra','yv-mylittlekitchen']},
+  {label:'Yarra Valley \u2014 Snow & Rainforest', stops:['yv-donna-buang','yv-rainforest','yv-redwood','yv-warburton']},
+  // === AIRBNB 2: MELBOURNE CBD (5 nights \u2014 settle in, no more moving) ===
+  {label:'Puffing Billy & into Melbourne', stops:['puffing-billy','south-melb-market']},
+  {label:'Carlton & Royal Park', stops:['melbourne-museum','carlton-gardens','brunetti','royal-park']},
+  {label:'CBD & RISING Festival', stops:['birrarung-marr','acmi','chocolate-buddha','rising','night-market']},
+  {label:'Collingwood & Richmond', stops:['collingwood-farm','farm-cafe','stomping-ground','top-paddock']},
+  {label:'St Kilda & Evening Lights', stops:['luna-park','beachcomber','botanic-gardens','lightscape']},
+];
+
+// ============ MAP STYLES ============
+const MAP_STYLES = {
+  default: {name:'Default', styles:[], type:'roadmap', preview:'linear-gradient(135deg,#e8f0e8,#d4e4d4)'},
+  silver: {name:'Light', styles:[
+    {elementType:'geometry',stylers:[{color:'#f5f5f5'}]},
+    {elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {elementType:'labels.text.fill',stylers:[{color:'#616161'}]},
+    {elementType:'labels.text.stroke',stylers:[{color:'#f5f5f5'}]},
+    {featureType:'administrative.land_parcel',elementType:'labels.text.fill',stylers:[{color:'#bdbdbd'}]},
+    {featureType:'poi',elementType:'geometry',stylers:[{color:'#eeeeee'}]},
+    {featureType:'poi',elementType:'labels.text.fill',stylers:[{color:'#757575'}]},
+    {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#e5e5e5'}]},
+    {featureType:'poi.park',elementType:'labels.text.fill',stylers:[{color:'#9e9e9e'}]},
+    {featureType:'road',elementType:'geometry',stylers:[{color:'#ffffff'}]},
+    {featureType:'road.arterial',elementType:'labels.text.fill',stylers:[{color:'#757575'}]},
+    {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#dadada'}]},
+    {featureType:'road.highway',elementType:'labels.text.fill',stylers:[{color:'#616161'}]},
+    {featureType:'road.local',elementType:'labels.text.fill',stylers:[{color:'#9e9e9e'}]},
+    {featureType:'transit.line',elementType:'geometry',stylers:[{color:'#e5e5e5'}]},
+    {featureType:'water',elementType:'geometry',stylers:[{color:'#c9c9c9'}]},
+    {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#9e9e9e'}]},
+  ], type:'roadmap', preview:'linear-gradient(135deg,#f5f5f5,#e0e0e0)'},
+  dark: {name:'Dark', styles:[
+    {elementType:'geometry',stylers:[{color:'#212121'}]},
+    {elementType:'labels.icon',stylers:[{visibility:'off'}]},
+    {elementType:'labels.text.fill',stylers:[{color:'#757575'}]},
+    {elementType:'labels.text.stroke',stylers:[{color:'#212121'}]},
+    {featureType:'administrative',elementType:'geometry',stylers:[{color:'#757575'}]},
+    {featureType:'poi',elementType:'geometry',stylers:[{color:'#181818'}]},
+    {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#181818'}]},
+    {featureType:'road',elementType:'geometry.fill',stylers:[{color:'#2c2c2c'}]},
+    {featureType:'road',elementType:'labels.text.fill',stylers:[{color:'#8a8a8a'}]},
+    {featureType:'road.arterial',elementType:'geometry',stylers:[{color:'#373737'}]},
+    {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#3c3c3c'}]},
+    {featureType:'road.highway.controlled_access',elementType:'geometry',stylers:[{color:'#4e4e4e'}]},
+    {featureType:'transit',elementType:'geometry',stylers:[{color:'#2f3948'}]},
+    {featureType:'water',elementType:'geometry',stylers:[{color:'#17263c'}]},
+    {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#515c6d'}]},
+  ], type:'roadmap', preview:'linear-gradient(135deg,#212121,#17263c)'},
+  satellite: {name:'Satellite', styles:[], type:'hybrid', preview:'linear-gradient(135deg,#1a3a1a,#2a4a3a)'},
+};
+
+// ============ STATE ============
+let itinerary = JSON.parse(JSON.stringify(DEFAULT_ITINERARY));
+let activeDay = -1;
+let currentStyle = 'default';
+const poiMap = {};
+POIS.forEach(p => poiMap[p.id] = p);
+const hiddenCats = new Set();
+let gmap, infoWindow;
+const gMarkers = {};
+let routeLines = [];
+
+// ============ HELPERS ============
+function streetViewUrl(lat, lng, w, h) {
+  return `https://maps.googleapis.com/maps/api/streetview?size=${w}x${h}&location=${lat},${lng}&fov=90&pitch=5&key=${API_KEY}`;
+}
+
+function thumbHtml(p, w, h) {
+  const cls = w > 50 ? 'poi' : 'stop';
+  const url = streetViewUrl(p.lat, p.lng, w * 2, h * 2);
+  return `<img class="${cls}-thumb" src="${url}" width="${w}" height="${h}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="${cls}-thumb-placeholder" style="display:none;background:${CATS[p.cat].color}22;color:${CATS[p.cat].color};">${p.icon||''}</div>`;
+}
+
+function popupImgHtml(p) {
+  const url = streetViewUrl(p.lat, p.lng, 520, 200);
+  return `<img src="${url}" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:8px;" loading="lazy" onerror="this.style.display='none'">`;
+}
+
+// ============ GOOGLE MAPS INIT ============
+function initMap() {
+  gmap = new google.maps.Map(document.getElementById('map'), {
+    center:{lat:-37.815,lng:144.965}, zoom:12,
+    mapTypeControl:false, streetViewControl:false, fullscreenControl:true,
+    styles:MAP_STYLES.default.styles,
+    mapTypeId:'roadmap'
+  });
+  infoWindow = new google.maps.InfoWindow();
+
+  POIS.forEach(p => {
+    const cat = CATS[p.cat];
+    const mk = new google.maps.Marker({
+      position:{lat:p.lat,lng:p.lng}, map:gmap, title:p.name,
+      icon:{path:google.maps.SymbolPath.CIRCLE,scale:9,fillColor:cat.color,fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5}
+    });
+    mk._poiId = p.id;
+    mk._cat = p.cat;
+    mk.addListener('click',()=>openInfoWindow(p.id,mk));
+    gMarkers[p.id] = mk;
+  });
+
+  renderLegend();
+  renderStyleToggle();
+  renderItinerary();
+  renderExplore();
+  renderDayBar();
+}
+
+function openInfoWindow(id, marker) {
+  const p = poiMap[id];
+  if (!p) return;
+  const cat = CATS[p.cat];
+  const on = isOnItinerary(id);
+  const dayIdx = activeDay===-1?0:activeDay;
+  infoWindow.setContent(`<div style="font-family:-apple-system,sans-serif;max-width:260px;line-height:1.4;">
+    ${popupImgHtml(p)}
+    <div style="font-size:11px;text-transform:uppercase;font-weight:700;letter-spacing:.3px;color:${cat.color};margin-bottom:2px;">${cat.label}</div>
+    <div style="font-weight:700;font-size:14px;margin-bottom:3px;">${p.name}</div>
+    <div style="font-size:12px;color:#64748b;margin-bottom:6px;">${p.desc}</div>
+    ${p.ref?`<div style="margin-bottom:8px;"><a href="${p.ref}" target="_blank" style="font-size:11px;color:#2563eb;">More info &rarr;</a></div>`:''}
+    ${on
+      ?`<button onclick="removeStopById('${id}')" style="background:#e11d48;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;">Remove from itinerary</button>`
+      :`<button onclick="addToDay(${dayIdx},'${id}')" style="background:#2563eb;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;">Add to Day ${dayIdx+1}</button>`
+    }
+  </div>`);
+  infoWindow.open(gmap, marker);
+}
+
+// ============ MAP STYLE TOGGLE ============
+function renderStyleToggle() {
+  document.getElementById('mapStyleToggle').innerHTML = '<h4>Map Style</h4>' +
+    Object.entries(MAP_STYLES).map(([k,v]) =>
+      `<button class="mst-btn${currentStyle===k?' active':''}" onclick="setMapStyle('${k}')"><div class="mst-preview" style="background:${v.preview};"></div>${v.name}</button>`
+    ).join('');
+}
+
+function setMapStyle(key) {
+  currentStyle = key;
+  const s = MAP_STYLES[key];
+  gmap.setOptions({styles:s.styles, mapTypeId:s.type});
+  renderStyleToggle();
+}
+
+// ============ RENDER ============
+function renderLegend() {
+  document.getElementById('mapLegend').innerHTML = '<h4>Legend</h4>' +
+    Object.entries(CATS).map(([k,v]) =>
+      `<div class="ml-item${hiddenCats.has(k)?' dimmed':''}" onclick="toggleCatVis('${k}',this)"><div class="ml-dot" style="background:${v.color}"></div>${v.label}</div>`
+    ).join('');
+}
+function toggleCatVis(cat,el) {
+  if(hiddenCats.has(cat))hiddenCats.delete(cat);else hiddenCats.add(cat);
+  el.classList.toggle('dimmed');
+  Object.values(gMarkers).forEach(mk=>mk.setVisible(!hiddenCats.has(mk._cat)));
+}
+
+const DAY_COLORS=['#2563eb','#7c3aed','#db2777','#ea580c','#16a34a','#b45309','#0d9488'];
+
+function renderDayBar() {
+  document.getElementById('dayBar').innerHTML =
+    `<button class="mdb${activeDay===-1?' active':''}" style="${activeDay===-1?'background:#334155;color:#fff;':''}" onclick="showAllDays()">All Days</button>`+
+    itinerary.map((_,i) => {
+      const c = DAY_COLORS[i%DAY_COLORS.length];
+      const isActive = activeDay===i;
+      return `<button class="mdb${isActive?' active':''}" style="${isActive?`background:${c};color:#fff;`:`color:${c};`}" onclick="focusDay(${i})"><span class="day-color-dot" style="background:${c};${isActive?'background:#fff;':''}"></span>Day ${i+1}</button>`;
+    }).join('');
+}
+
+function renderItinerary() {
+  const panel = document.getElementById('panel-itinerary');
+  panel.innerHTML = itinerary.map((day,di) => {
+    const stopsHtml = day.stops.map((sid,si) => {
+      const p = poiMap[sid]; if(!p) return '';
+      const c = CATS[p.cat].color;
+      return `<div class="stop" data-poi="${sid}" onclick="panToPoi('${sid}')">
+        ${thumbHtml(p,48,48)}
+        <div class="stop-info"><div class="stop-name">${p.name}</div><div class="stop-desc">${p.area}</div></div>
+        <button class="stop-remove" title="Remove" onclick="event.stopPropagation();removeStop(${di},${si})">&times;</button>
+      </div>`;
+    }).join('');
+    const dc = DAY_COLORS[di%DAY_COLORS.length];
+    return `<div class="day-block${activeDay!==-1&&activeDay!==di?' collapsed':''}" data-day="${di}">
+      <div class="day-header">
+        <div class="day-num" style="background:${dc};cursor:pointer;" onclick="focusDay(${di})" title="Show on map">${di+1}</div>
+        <div class="day-label" onclick="event.stopPropagation();editDayLabel(${di},this)" title="Click to rename">${day.label}</div>
+        <svg class="day-chevron" onclick="toggleDayBlock(${di})" style="cursor:pointer;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="day-body">${stopsHtml}<div class="add-stop-hint">Click a marker on the map or use Explore tab to add stops</div></div>
+    </div>`;
+  }).join('');
+  renderDayBar();
+  renderRoutes();
+  updateExplorePanel();
+}
+
+function renderExplore() {
+  const panel = document.getElementById('panel-explore');
+  const grouped = {};
+  Object.keys(CATS).forEach(k=>grouped[k]=[]);
+  POIS.forEach(p=>grouped[p.cat].push(p));
+  panel.innerHTML = Object.entries(CATS).map(([k,v]) => {
+    return `<div class="cat-section" data-cat="${k}">
+      <div class="cat-header" onclick="this.parentElement.classList.toggle('collapsed')">
+        <div class="cat-dot" style="background:${v.color}"></div><div class="cat-label">${v.label}</div>
+        <div class="cat-count">${grouped[k].length}</div>
+        <svg class="cat-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="cat-body">${grouped[k].map(p => {
+        const onIt = isOnItinerary(p.id);
+        const tagHtml = p.tags.includes('free')?'<span class="poi-tag" style="background:#dcfce7;color:#16a34a;">Free</span>':'';
+        return `<div class="poi-card${onIt?' on-itinerary':''}" data-poi="${p.id}" onclick="panToPoi('${p.id}')">
+          ${thumbHtml(p,64,56)}
+          <div class="poi-info"><div class="poi-name">${p.name}</div><div class="poi-desc">${p.desc}</div><div class="poi-tags">${tagHtml}</div></div>
+          <button class="poi-add${onIt?' added':''}" onclick="event.stopPropagation();addFromExplore('${p.id}')">${onIt?'Added':'+ Day '+(activeDay===-1?1:activeDay+1)}</button>
+        </div>`;
+      }).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function updateExplorePanel() {
+  document.querySelectorAll('.poi-card').forEach(card => {
+    const id=card.dataset.poi,on=isOnItinerary(id);
+    card.classList.toggle('on-itinerary',on);
+    const btn=card.querySelector('.poi-add');
+    if(btn){btn.classList.toggle('added',on);btn.textContent=on?'Added':'+ Day '+(activeDay===-1?1:activeDay+1);}
+  });
+}
+
+let dayOverlays = [];
+let dayCircles = {}; // keyed by day index
+
+function renderRoutes() {
+  routeLines.forEach(l=>l.setMap(null));
+  routeLines=[];
+  dayOverlays.forEach(o=>o.setMap(null));
+  dayOverlays=[];
+  dayCircles={};
+
+  itinerary.forEach((day,di) => {
+    const c = DAY_COLORS[di%DAY_COLORS.length];
+    const coords=day.stops.map(sid=>poiMap[sid]).filter(Boolean).map(p=>({lat:p.lat,lng:p.lng}));
+    if(coords.length===0)return;
+
+    // Draw overlay for all days (dimmed) or active day (bright)
+    const isActive = activeDay===-1||activeDay===di;
+    const isFocused = activeDay===di;
+
+    if(coords.length>=1){
+      // Draw circle/hull overlay around the day's area
+      const bounds=new google.maps.LatLngBounds();
+      coords.forEach(co=>bounds.extend(co));
+      const center=bounds.getCenter();
+      // Calculate radius from bounds
+      const ne=bounds.getNorthEast(),sw=bounds.getSouthWest();
+      const R=6371000;
+      const dlat=(ne.lat()-sw.lat())*Math.PI/180;
+      const dlng=(ne.lng()-sw.lng())*Math.PI/180;
+      const a=Math.sin(dlat/2)**2+Math.cos(sw.lat()*Math.PI/180)*Math.cos(ne.lat()*Math.PI/180)*Math.sin(dlng/2)**2;
+      const dist=R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+      const radius=Math.max(dist/2+400,800); // minimum 800m
+
+      const overlay=new google.maps.Circle({
+        center:center,
+        radius:radius,
+        fillColor:c,
+        fillOpacity:isFocused?0.12:(isActive?0.06:0.03),
+        strokeColor:c,
+        strokeOpacity:isFocused?0.5:(isActive?0.25:0.1),
+        strokeWeight:isFocused?2.5:1.5,
+        map:gmap,
+        clickable:false
+      });
+      dayOverlays.push(overlay);
+      dayCircles[di]=overlay;
+
+      // Day number label in the center of the overlay
+      if(isActive){
+        const label=new google.maps.Marker({
+          position:center,
+          map:gmap,
+          icon:{
+            path:google.maps.SymbolPath.CIRCLE,
+            scale:0
+          },
+          label:{
+            text:`Day ${di+1}`,
+            color:c,
+            fontSize:isFocused?'14px':'11px',
+            fontWeight:'700',
+            className:'day-map-label'
+          },
+          clickable:true,
+          zIndex:1
+        });
+        label.addListener('click',()=>focusDay(di));
+        dayOverlays.push(label);
+      }
+    }
+
+    // Route polyline
+    if(isActive&&coords.length>1){
+      routeLines.push(new google.maps.Polyline({
+        path:coords,strokeColor:c,strokeOpacity:isFocused?0.8:0.5,strokeWeight:isFocused?4:2.5,geodesic:true,
+        icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,scale:3},offset:'0',repeat:'16px'}],map:gmap
+      }));
+    }
+  });
+}
+
+function editDayLabel(di, el) {
+  const current = itinerary[di].label;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = current;
+  input.className = 'day-label-input';
+  input.addEventListener('blur', () => finishEdit(di, input));
+  input.addEventListener('keydown', (e) => {
+    if(e.key==='Enter'){e.preventDefault();input.blur();}
+    if(e.key==='Escape'){input.value=current;input.blur();}
+  });
+  el.replaceWith(input);
+  input.focus();
+  input.select();
+}
+
+function finishEdit(di, input) {
+  const val = input.value.trim() || itinerary[di].label;
+  itinerary[di].label = val;
+  renderItinerary();
+  renderRoutes();
+}
+
+// ============ ACTIONS ============
+function isOnItinerary(id){return itinerary.some(d=>d.stops.includes(id));}
+function addToDay(di,id){if(!itinerary[di].stops.includes(id)){itinerary[di].stops.push(id);renderItinerary();renderExplore();const mk=gMarkers[id];if(mk)openInfoWindow(id,mk);}}
+function addFromExplore(id){if(isOnItinerary(id))return;addToDay(activeDay===-1?0:activeDay,id);}
+function removeStop(di,si){itinerary[di].stops.splice(si,1);renderItinerary();renderExplore();}
+function removeStopById(id){itinerary.forEach(d=>{d.stops=d.stops.filter(s=>s!==id);});renderItinerary();renderExplore();const mk=gMarkers[id];if(mk)openInfoWindow(id,mk);}
+function panToPoi(id){const p=poiMap[id];if(!p)return;gmap.panTo({lat:p.lat,lng:p.lng});gmap.setZoom(14);const mk=gMarkers[id];if(mk)openInfoWindow(id,mk);}
+function toggleDayBlock(di){const b=document.querySelector(`.day-block[data-day="${di}"]`);if(b)b.classList.toggle('collapsed');}
+function focusDay(di){
+  activeDay=di;
+  renderItinerary();
+  renderExplore();
+  // Fit to this day's circle overlay
+  const circle = dayCircles[di];
+  if(circle){
+    gmap.fitBounds(circle.getBounds(), {top:40,right:40,bottom:60,left:40});
+  } else {
+    const bounds=new google.maps.LatLngBounds();
+    let has=false;
+    itinerary[di].stops.forEach(sid=>{const p=poiMap[sid];if(p){bounds.extend({lat:p.lat,lng:p.lng});has=true;}});
+    if(has)gmap.fitBounds(bounds,{top:60,right:60,bottom:60,left:60});
+  }
+}
+function showAllDays(){
+  activeDay=-1;
+  renderItinerary();
+  renderExplore();
+  // Fit to all circle overlays
+  const bounds=new google.maps.LatLngBounds();
+  let has=false;
+  dayOverlays.forEach(o=>{
+    if(o instanceof google.maps.Circle){
+      bounds.union(o.getBounds());
+      has=true;
+    }
+  });
+  if(has) gmap.fitBounds(bounds,{top:40,right:40,bottom:60,left:40});
+  else { gmap.setCenter({lat:-37.815,lng:144.965});gmap.setZoom(12); }
+}
+
+document.querySelectorAll('.sb-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.sb-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.sb-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+tab.dataset.panel).classList.add('active');
+  });
+});
+</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=__GOOGLE_MAPS_API_KEY__&callback=initMap"></script>
+</body>
+</html>
