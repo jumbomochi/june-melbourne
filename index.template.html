@@ -50,6 +50,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .day-block.collapsed .day-chevron{transform:rotate(-90deg);}
 .day-block.collapsed .day-body{display:none;}
 .day-body{padding:0 16px 12px;}
+.day-transport,.day-schedule{background:#f8fafc;border-radius:8px;padding:8px 10px;margin:8px 0;font-size:.8rem;}
+.day-meta-label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.3px;color:#475569;text-transform:uppercase;margin-bottom:4px;}
+.day-meta-body{color:#1e293b;line-height:1.45;}
+.schedule-table{width:100%;border-collapse:collapse;}
+.schedule-table td{padding:3px 0;vertical-align:top;}
+.sched-time{width:54px;color:#0f766e;font-weight:600;font-variant-numeric:tabular-nums;font-size:.78rem;}
+.sched-act{color:#1e293b;font-size:.8rem;}
 
 .stop{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9;cursor:pointer;transition:background .1s;border-radius:6px;}
 .stop:last-child{border-bottom:none;}
@@ -195,24 +202,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="info-section"><h3>Trip Overview</h3>
           <div class="info-item"><strong>11 days:</strong> May 30 (arrive) &ndash; Jun 9 (depart)</div>
           <div class="info-item"><strong>Flights:</strong> Scoot TR38 arriving 20:20 &bull; Scoot TR59 departing 13:00</div>
-          <div class="info-item"><strong>Phase 1:</strong> Night 1 at ParkRoyal Airport (zero-friction arrival)</div>
-          <div class="info-item"><strong>Phase 2:</strong> Melbourne CBD (5 days, culture &amp; urban play)</div>
-          <div class="info-item"><strong>Phase 3:</strong> Yarra Valley &amp; Dandenong Ranges (4 days, nature &amp; wildlife)</div>
-          <div class="info-item"><strong>Phase 4:</strong> Departure day</div>
+          <div class="info-item"><strong>Phase 1:</strong> Night 1 at Holiday Inn Melbourne Airport (free shuttle from T2)</div>
+          <div class="info-item"><strong>Phase 2:</strong> Yarra Valley via Werribee Zoo (4 nights, nature &amp; wildlife — weekday Healesville for crowd-free experience)</div>
+          <div class="info-item"><strong>Phase 3:</strong> Melbourne CBD (5 nights, culture &amp; urban play — King's Birthday Mon falls in CBD)</div>
+          <div class="info-item"><strong>Phase 4:</strong> SkyBus departure day</div>
         </div>
         <div class="info-section"><h3>Weather (June)</h3><div class="info-item">8&ndash;14&deg;C. Pack puffer jackets and beanies. Frequent rain &mdash; always carry rain jackets.</div></div>
         <div class="info-section"><h3>Transport</h3>
-          <div class="info-item"><strong>Rental car:</strong> Pick up on Jun 5 when heading to Yarra Valley. Drive back to airport to return on Jun 9 departure day.</div>
-          <div class="info-item"><strong>Free Tram Zone:</strong> Use it in the CBD to save your legs!</div>
-          <div class="info-item"><strong>SkyBus:</strong> Southern Cross Station &rarr; Airport on departure day.</div>
+          <div class="info-item"><strong>Rental car (Avis):</strong> Pick up at <strong>Tullamarine airport</strong> on May 31 morning. Drive Werribee Zoo &rarr; YV. Return at <strong>60 Franklin St CBD</strong> on Jun 4 afternoon. ~5 days rental.</div>
+          <div class="info-item"><strong>SkyBus:</strong> Southern Cross Station &rarr; Tullamarine T1 on <strong>departure</strong> day (Jun 9, ~AU$22 adult / $10 child). Or Uber XL ~AU$70 family of 4.</div>
+          <div class="info-item"><strong>Free Tram Zone:</strong> CBD phase (Jun 4&ndash;8) uses free trams within Spencer / La Trobe / Spring / Flinders boundary. Outside the zone, tap on with Myki or contactless card.</div>
+          <div class="info-item"><strong>Klook combo tour (Jun 5):</strong> Hotel Windsor pickup 08:30 &mdash; no PT or car needed that day.</div>
         </div>
         <div class="info-section"><h3>Indoor Rainy-Day Backups</h3>
           <div class="info-item"><strong>LEGOLAND Discovery Centre</strong> (Chadstone Mall)</div>
           <div class="info-item"><strong>O&rsquo;Brien Icehouse</strong> (ice skating, Docklands)</div>
         </div>
-        <div class="info-section"><h3>Book Ahead</h3><div class="info-item">SEA LIFE, Puffing Billy, Healesville Sanctuary, Melbourne Skydeck &mdash; book online in advance.</div></div>
+        <div class="info-section"><h3>Book Ahead</h3>
+          <div class="info-item"><strong>Avis rental</strong> &mdash; Tullamarine pickup May 31, CBD 60 Franklin St drop Jun 4 (~5 days)</div>
+          <div class="info-item"><strong>Werribee Open Range Zoo</strong> &mdash; pre-book Safari Bus slot for May 31 afternoon</div>
+          <div class="info-item"><strong>Healesville Sanctuary</strong> &mdash; pre-book Jun 2 tickets (Tuesday weekday = quiet!)</div>
+          <div class="info-item"><strong>Rayner's Orchard tractor tour</strong> &mdash; book the 10:30 slot for Jun 3</div>
+          <div class="info-item"><strong>Zonzo Estate</strong> &mdash; lunch booking for 13:00 on Jun 3</div>
+          <div class="info-item"><strong>Klook combo tour</strong> &mdash; Puffing Billy + Phillip Island Penguin Parade, 08:30 Hotel Windsor pickup (Jun 5)</div>
+          <div class="info-item"><strong>SEA LIFE + Melbourne Skydeck</strong> &mdash; online tickets cheaper (Jun 7); add The Edge upgrade for the 9yo</div>
+        </div>
         <div class="info-section"><h3>Where to Stay</h3>
-          <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>3 stays</strong>: ParkRoyal Airport (Night 1), CBD apartment like Brady Apartments or Adina Southbank (Nights 2&ndash;6, 5 nights), then Yarra Valley accommodation like BIG4 Yarra Valley or Yering Gorge Cottages (Nights 7&ndash;10, 4 nights).</em></div>
+          <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>1 airport hotel + 2 stays</strong>: Holiday Inn Melbourne Airport (Night 1, May 30) &rarr; Healesville stay (Nights 2&ndash;5, May 31&ndash;Jun 3 — weekday rates, central for Sanctuary + Maze + Redwoods) &rarr; CBD apartment-hotel like Citadines on Bourke or Adina Flinders (Nights 6&ndash;10, Jun 4&ndash;8). Apartment-hotels recommended over Airbnb for kitchen + housekeeping + indoor pool combo.</em></div>
           <div class="info-item" style="margin-top:4px;">Browse all listings on the <strong>Explore tab &rarr; Accommodation</strong> section.</div>
         </div>
         <div class="info-section"><h3>Useful Links</h3>
@@ -260,6 +276,8 @@ const POIS = [
   {id:'phoenix-park',cat:'playground',name:'Phoenix Park Adventure Playground',area:'Malvern East (20min)',lat:-37.8775,lng:145.0790,desc:'Epic swings and old-school timber adventure playground behind Chadstone.',tags:['free'],ref:'https://www.stonnington.vic.gov.au/Things-to-do/Parks-and-gardens',icon:'\u{1F333}'},
   {id:'markham-reserve',cat:'playground',name:'Markham Reserve',area:'Ashburton (20min)',lat:-37.8645,lng:145.0810,desc:'Modern playspace — twisty slides, sand play, climbing webs. Mentioned alongside Booran on Reddit.',tags:['free'],ref:'https://www.boroondara.vic.gov.au/parks-and-recreation',icon:'\u{1F31F}'},
   {id:'brighton-foreshore',cat:'playground',name:'North Road Foreshore Playground',area:'Brighton (20min)',lat:-37.9085,lng:144.9950,desc:'Beachside playground with bathing-box views. Climbing nets, slides, swings.',tags:['free'],ref:'https://www.bayside.vic.gov.au/services/parks-and-foreshore',icon:'\u{1F3D6}'},
+  {id:'st-kilda-beach',cat:'playground',name:'St Kilda Beach & Pier',area:'St Kilda',lat:-37.8675,lng:144.9745,desc:'Calm bay swimming beach with pier promenade. Walk St Kilda Pier at dusk to spot Little Penguins on the breakwater — free! Sea Baths nearby. Tram 96 from CBD inside the free tram zone.',tags:['free'],ref:'https://www.visitmelbourne.com/regions/melbourne/see-and-do/outdoor-activities/beaches',icon:'\u{1F30A}'},
+  {id:'brighton-beach',cat:'playground',name:'Brighton Beach Bathing Boxes',area:'Brighton (30min)',lat:-37.9180,lng:144.9853,desc:'Iconic colourful timber bathing boxes at Dendy Street Beach. Photogenic in morning light. ~10min walk from Brighton Beach Station (Sandringham line) or 15min drive from CBD.',tags:['free'],ref:'https://www.bayside.vic.gov.au/services/parks-and-foreshore',icon:'\u{1F308}'},
   {id:'thomas-st-hampton',cat:'playground',name:'Thomas Street South Reserve',area:'Hampton (25min)',lat:-37.9415,lng:145.0085,desc:'Multi-mention bayside favourite. Big fort, slides, plenty of climbing options.',tags:['free'],ref:'https://www.bayside.vic.gov.au/services/parks-and-foreshore',icon:'\u{1F3F0}'},
   {id:'wombat-bend',cat:'playground',name:'Wombat Bend',area:'Templestowe (25min)',lat:-37.7565,lng:145.1100,desc:'Riverside playground on the Yarra. Wombat sculptures, climbing structures, bushland walks.',tags:['free'],ref:'https://www.manningham.vic.gov.au/parks-and-reserves',icon:'\u{1F43F}'},
   {id:'verdant-park',cat:'playground',name:'Verdant Park',area:'Doncaster (25min)',lat:-37.7700,lng:145.1490,desc:'Twin epic tunnel slides down a hillside. Modern, well-designed playspace.',tags:['free'],ref:'https://www.manningham.vic.gov.au/parks-and-reserves',icon:'\u{1F3A2}'},
@@ -277,10 +295,11 @@ const POIS = [
   // INDOOR
   {id:'legoland',cat:'indoor',name:'LEGOLAND Discovery Centre',area:'Chadstone',lat:-37.8860,lng:145.0840,desc:'DUPLO Farm (4yo), LEGO Racers (9yo). Ages 3\u201310.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F9F1}'},
   {id:'sealife',cat:'indoor',name:'SEA LIFE Aquarium',area:'CBD',lat:-37.8205,lng:144.9580,desc:'Underwater tunnels, penguin encounters, touch pools.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F420}'},
-  {id:'melbourne-museum',cat:'indoor',name:'Melbourne Museum',area:'Carlton',lat:-37.8032,lng:144.9717,desc:"Children's Gallery (under 5s), dinosaurs (9yo). Next to Carlton Gardens.",tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3DB}'},
-  {id:'scienceworks',cat:'indoor',name:'Scienceworks',area:'Spotswood',lat:-37.8325,lng:144.8990,desc:'Live science demos, planetarium, hands-on galleries.',tags:[],ref:'https://www.visitvictoria.com/regions/melbourne/see-and-do/family-activities',icon:'\u{1F52C}'},
+  {id:'melbourne-museum',cat:'indoor',name:'Melbourne Museum',area:'Carlton',lat:-37.8032,lng:144.9717,desc:"Iconic Children's Gallery (under 8s — immersive play zones, sensory experiences) is the top kids attraction here. Dinosaurs gallery for 9yo. IMAX next door. Next to Carlton Gardens.",tags:[],ref:'https://museumsvictoria.com.au/melbournemuseum/whats-on/the-childrens-gallery/',icon:'\u{1F3DB}'},
+  {id:'scienceworks',cat:'indoor',name:'Scienceworks',area:'Spotswood',lat:-37.8325,lng:144.8990,desc:'Live Lightning Room show, planetarium, hands-on galleries. Ground Up exhibition (build-and-construct play) is gold for the 4yo. Nitty Gritty SuperCity for under-6s, Sportsworks for the 9yo.',tags:[],ref:'https://museumsvictoria.com.au/scienceworks/',icon:'\u{1F52C}'},
   {id:'acmi',cat:'indoor',name:'ACMI',area:'Fed Square',lat:-37.8180,lng:144.9690,desc:'Playable videogame exhibition (1970s to today). Free entry.',tags:['free'],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3AE}'},
   {id:'state-library',cat:'indoor',name:"State Library Children's Quarter",area:'CBD',lat:-37.8098,lng:144.9645,desc:'Free. Reading nooks, creative play areas, books.',tags:['free'],ref:'https://whatson.melbourne.vic.gov.au/article/melbournes-best-rainy-day-activities-for-kids',icon:'\u{1F4DA}'},
+  {id:'bourke-street-mall',cat:'indoor',name:'Bourke Street Mall',area:'CBD',lat:-37.8136,lng:144.9637,desc:'Free outdoor pedestrian mall with trams gliding through. Buskers, Myer & David Jones flagships, Royal Arcade nearby. Inside the free tram zone — great CBD wander.',tags:['free'],ref:'https://whatson.melbourne.vic.gov.au/places/bourke-street-mall',icon:'\u{1F6CD}'},
   {id:'monopoly',cat:'indoor',name:'Monopoly Dreams',area:'CBD',lat:-37.8120,lng:144.9630,desc:'Immersive interactive Monopoly experience.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3B2}'},
   {id:'ngv',cat:'indoor',name:'NGV (National Gallery)',area:'Southbank',lat:-37.8226,lng:144.9689,desc:"Free entry. Kids' programs & interactive family trails.",tags:['free'],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F5BC}'},
   // WILDLIFE
@@ -306,9 +325,10 @@ const POIS = [
   {id:'yv-redwood',cat:'daytrip',name:'Redwood Forest',area:'Warburton (~1.5hr)',lat:-37.7570,lng:145.6600,desc:'Towering California redwoods in the Victorian bush. Magical pathways, great for photos. Easy flat walk with kids.',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/children-are-free-in-the-warburton-valley-top-activities',icon:'\u{1F333}'},
   {id:'yv-healesville-hotel',cat:'food',name:'The Healesville Hotel',area:'Healesville',lat:-37.6545,lng:145.5190,desc:'Family-friendly pub with backyard picnic area under elm trees. Great winter pub grub.',tags:[],ref:'https://www.tripadvisor.com/Restaurants-g1575072-zfp5-Yarra_Valley_Victoria.html',icon:'\u{1F37A}'},
   {id:'yv-mylittlekitchen',cat:'food',name:'My Little Kitchen',area:'Healesville',lat:-37.6530,lng:145.5210,desc:'Loved brunch/lunch spot. Kid-friendly menu, heated outdoor seating for winter. Must-visit.',tags:[],ref:'https://www.mammaknowseast.com.au/eats-content/tag/yarra+valley+eats',icon:'\u{1F950}'},
+  {id:'yv-innocent-bystander',cat:'food',name:'Innocent Bystander',area:'Healesville',lat:-37.6555,lng:145.5165,desc:'Bustling cellar door + wood-fired pizza + house beers in a huge open warehouse. Very family-friendly — long tables, loud, kids run free while parents drink. Solid dinner choice.',tags:[],ref:'https://www.innocentbystander.com.au/',icon:'\u{1F355}'},
   {id:'yv-zonzo',cat:'food',name:'Zonzo Estate',area:'Yarra Glen',lat:-37.6680,lng:145.3800,desc:'Stunning vineyard restaurant. Kid-friendly options, generous portions. Beautiful setting.',tags:[],ref:'https://www.tripadvisor.com/Restaurants-g1575072-zfp5-Yarra_Valley_Victoria.html',icon:'\u{1F377}'},
   // NEW ITINERARY STOPS
-  {id:'parkroyal-airport',cat:'stay',name:'ParkRoyal Melbourne Airport',area:'Melbourne Airport',lat:-37.6713,lng:144.8488,desc:'Walk via skybridge from T2. Zero-friction first night — no driving, no shuttles.',tags:[],ref:'https://www.parkroyalhotels.com/en/hotels/australia/melbourne-airport',icon:'\u{1F6EC}'},
+  {id:'holiday-inn-airport',cat:'stay',name:'Holiday Inn Melbourne Airport',area:'Melbourne Airport',lat:-37.6695,lng:144.8503,desc:'Across from terminals — free 24/7 airport shuttle (~5min loop). Family rooms, restaurant, indoor pool. Easy first-night base.',tags:[],ref:'https://www.ihg.com/holidayinn/hotels/us/en/melbourne-airport/melhi/hoteldetail',icon:'\u{1F6EC}'},
   {id:'beechworth-bakery',cat:'food',name:'Beechworth Bakery Healesville',area:'Healesville',lat:-37.6538,lng:145.5180,desc:'Opens 06:30. Famous "Beesting" pastry. Great early breakfast stop before Healesville Sanctuary.',tags:[],ref:'https://www.beechworth-bakery.com.au/',icon:'\u{1F950}'},
   {id:'grants-picnic',cat:'daytrip',name:'Grants Picnic Ground',area:'Sherbrooke Forest',lat:-37.8780,lng:145.3370,desc:'Feed wild cockatoos in the Dandenong Ranges. Picnic tables among towering mountain ash.',tags:['free'],ref:'https://www.visitdandenongranges.com.au/',icon:'\u{1F99C}'},
   {id:'hedgend-maze',cat:'daytrip',name:'Hedgend Maze',area:'Healesville',lat:-37.7505,lng:145.4695,desc:'Giant hedge maze plus fossil digging. Great for kids of all ages.',tags:[],ref:'https://www.hedgendmaze.com.au/',icon:'\u{1F333}'},
@@ -316,7 +336,7 @@ const POIS = [
   {id:'maroondah-reservoir',cat:'daytrip',name:'Maroondah Reservoir Park',area:'Healesville',lat:-37.6360,lng:145.5560,desc:'Walk across the dam wall, beautiful gardens and playground. Let the kids burn energy.',tags:['free'],ref:'https://www.yarraranges.vic.gov.au/',icon:'\u{1F4A7}'},
   {id:'diamond-valley-railway',cat:'daytrip',name:'Diamond Valley Railway',area:'Eltham',lat:-37.7130,lng:145.1480,desc:'Miniature steam and diesel train rides through Eltham parkland. Check running days.',tags:[],ref:'https://www.dvr.com.au/',icon:'\u{1F682}'},
   {id:'southbank-playspace',cat:'playground',name:'Southbank Boulevard Play Space',area:'Southbank',lat:-37.8225,lng:144.9645,desc:'Fantastic modern playground right in the city. Water play, climbing structures, slides.',tags:['free'],ref:'https://www.melbourne.vic.gov.au/playgrounds',icon:'\u{1F3A0}'},
-  {id:'skydeck',cat:'indoor',name:'Melbourne Skydeck',area:'Southbank',lat:-37.8215,lng:144.9585,desc:'88th floor views from Eureka Tower. Watch the city lights come on at sunset.',tags:[],ref:'https://www.melbourneskydeck.com.au/',icon:'\u{1F303}'},
+  {id:'skydeck',cat:'indoor',name:'Melbourne Skydeck',area:'Southbank',lat:-37.8215,lng:144.9585,desc:'88th floor views from Eureka Tower. Watch the city lights come on at sunset. Add The Edge (+AU$15/pp) — glass cube extends out from the tower, thrilling for the 9yo (4yo may be too young).',tags:[],ref:'https://www.melbourneskydeck.com.au/',icon:'\u{1F303}'},
   {id:'south-wharf',cat:'food',name:'South Wharf Promenade',area:'South Wharf',lat:-37.8250,lng:144.9510,desc:'Riverside dining precinct with kid-friendly options. Also home to DFO South Wharf for shopping.',tags:[],ref:'https://www.southwharf.com.au/',icon:'\u{1F6F3}'},
   {id:'higher-ground',cat:'food',name:'Higher Ground',area:'CBD (near Southern Cross)',lat:-37.8195,lng:144.9555,desc:'Popular multi-level brunch spot. Great coffee and breakfast before heading to the airport.',tags:[],ref:'https://highergroundmelbourne.com.au/',icon:'\u2615'},
   // RESTAURANTS
@@ -363,21 +383,176 @@ const CATS = {
 };
 
 const DEFAULT_ITINERARY = [
-  // === PHASE 1: ARRIVAL (May 30) ===
-  {label:'May 30 \u2014 Arrival in Melbourne', stops:['parkroyal-airport']},
-  // === PHASE 2: MELBOURNE CBD (May 31 \u2013 Jun 4) ===
-  {label:'May 31 \u2014 Settle In & City Play', stops:['southbank-playspace']},
-  {label:'Jun 1 \u2014 Museums & Gardens', stops:['melbourne-museum','brunetti','carlton-gardens']},
-  {label:'Jun 2 \u2014 Arts & Moving Images', stops:['birrarung-marr','acmi','night-market']},
-  {label:'Jun 3 \u2014 Science & Sky-High Views', stops:['scienceworks','sealife','skydeck']},
-  {label:'Jun 4 \u2014 Gardens & South Wharf', stops:['botanic-gardens','south-wharf']},
-  // === PHASE 3: YARRA VALLEY & DANDENONG RANGES (Jun 5 \u2013 Jun 8) ===
-  {label:'Jun 5 \u2014 Wildlife & Farm Vibes', stops:['diamond-valley-railway','beechworth-bakery','healesville','yv-chocolaterie']},
-  {label:'Jun 6 \u2014 The Steam Train Experience', stops:['puffing-billy','grants-picnic']},
-  {label:'Jun 7 \u2014 Fruits & Mazes', stops:['yv-rayners','yv-zonzo','hedgend-maze']},
-  {label:'Jun 8 \u2014 Nature Walks & Local Produce', stops:['yv-redwood','yv-dairy','maroondah-reservoir']},
-  // === PHASE 4: DEPARTURE (Jun 9) ===
-  {label:'Jun 9 \u2014 Departure Day', stops:['higher-ground']},
+  // === PHASE 1: ARRIVAL (May 30 Sat) ===
+  {
+    label:'May 30 (Sat) \u2014 Arrival 8:20pm \u2192 Holiday Inn Melbourne Airport (free shuttle)',
+    stops:['holiday-inn-airport'],
+    transport:'Free Holiday Inn shuttle runs 24/7 from outside T2 / T3 arrivals (~5\u201310min loop). Wait at the hotel shuttle bay; book ahead at the front desk hotline if it\'s a quiet night.',
+    schedule:[
+      {time:'20:20',activity:'Land at Tullamarine T2 (international arrivals)'},
+      {time:'21:15',activity:'Through customs + baggage'},
+      {time:'21:30',activity:'Walk to T2 ground-floor hotel shuttle bay, call Holiday Inn pickup'},
+      {time:'21:45',activity:'Shuttle to Holiday Inn (across road, ~5min)'},
+      {time:'22:00',activity:'Check in, kids to bed'},
+    ],
+  },
+  // === PHASE 2: YARRA VALLEY VIA WERRIBEE (May 31 \u2013 Jun 3) \u2014 Avis from airport ===
+  {
+    label:'May 31 (Sun) \u2014 Pickup Avis at airport \u2192 Werribee Open Range Zoo \u2192 drive to YV',
+    stops:['werribee-zoo','airbnb-yv-healesville'],
+    transport:'Hotel shuttle back to Tullamarine \u2192 Avis airport counter (~10min walk inside terminal). Werribee Zoo is just 25min south via M1. After zoo, drive east via M80 Ring Rd \u2192 M3 Eastern Fwy to YV (~1.5hr). Avoids CBD traffic entirely.',
+    schedule:[
+      {time:'08:00',activity:'Breakfast at Holiday Inn'},
+      {time:'09:00',activity:'Free shuttle to Tullamarine \u2192 Avis counter'},
+      {time:'09:30',activity:'Pickup Avis car'},
+      {time:'10:00',activity:'Drive M1 south \u2192 Werribee Open Range Zoo (~25min)'},
+      {time:'10:30',activity:'Arrive zoo \u2014 book Safari Bus tour'},
+      {time:'11:00',activity:'Safari Bus tour (~50min) \u2014 African savannah'},
+      {time:'12:30',activity:'Lunch at Meerkat Bistro (zoo caf\u00e9)'},
+      {time:'13:30',activity:'Walking circuit \u2014 gorilla, hippo, lion enclosures'},
+      {time:'15:30',activity:'Leave Werribee, drive east via M80 \u2192 M3 to YV'},
+      {time:'17:30',activity:'Arrive Healesville Airbnb, unpack'},
+      {time:'18:30',activity:'Easy dinner \u2014 walk into Healesville town (The Healesville Hotel or Innocent Bystander)'},
+    ],
+  },
+  {
+    label:'Jun 1 (Mon) \u2014 YV warm-up: Hedgend Maze + Maroondah Reservoir',
+    stops:['beechworth-bakery','hedgend-maze','maroondah-reservoir'],
+    transport:'All stops within 25min drive of base. Quiet weekday \u2014 most YV attractions open with no crowds.',
+    schedule:[
+      {time:'08:30',activity:'Breakfast at Beechworth Bakery in Healesville (Beesting pastry, coffee)'},
+      {time:'10:00',activity:'Drive to Hedgend Maze \u2014 giant hedge maze + fossil dig'},
+      {time:'13:00',activity:'Lunch \u2014 My Little Kitchen in Healesville (heated outdoor seating)'},
+      {time:'14:30',activity:'Maroondah Reservoir Park \u2014 dam wall walk, playground, picnic'},
+      {time:'17:00',activity:'Back to Airbnb'},
+      {time:'18:30',activity:'Dinner \u2014 Innocent Bystander (wood-fired pizza, bustling family vibe)'},
+    ],
+  },
+  {
+    label:'Jun 2 (Tue) \u2014 Healesville Sanctuary (weekday quiet!) + Warburton Redwoods',
+    stops:['healesville','yv-redwood'],
+    transport:'Healesville Sanctuary ~5min from Healesville town. Warburton Redwoods ~45min east via Maroondah Hwy.',
+    schedule:[
+      {time:'08:00',activity:'Breakfast at Airbnb'},
+      {time:'09:00',activity:'Healesville Sanctuary opens \u2014 straight to Platypus House (weekday = no queue!)'},
+      {time:'10:00',activity:'Tales from Platypus Creek show'},
+      {time:'11:00',activity:'Spirits of the Sky bird show (outdoor amphitheatre)'},
+      {time:'12:30',activity:'Lunch at sanctuary caf\u00e9 \u2014 quiet, no crowd pressure'},
+      {time:'13:30',activity:'Drive east to Warburton Redwood Forest (~45min)'},
+      {time:'14:30',activity:'Walk through California redwoods (flat, easy 30\u201360min)'},
+      {time:'16:00',activity:'Drive back via Warburton village (mulled wine stop?)'},
+      {time:'17:30',activity:'Back to Airbnb'},
+      {time:'18:30',activity:'Dinner \u2014 The Healesville Hotel (family-friendly pub) or Airbnb-in'},
+    ],
+  },
+  {
+    label:'Jun 3 (Wed) \u2014 Orchard, Dairy, Chocolaterie & Zonzo Lunch',
+    stops:['yv-rayners','yv-zonzo','yv-dairy','yv-chocolaterie'],
+    transport:'All stops cluster ~20\u201330min drive west of Healesville in the Yarra Glen / Yering / Woori Yallock cluster.',
+    schedule:[
+      {time:'08:30',activity:'Breakfast at Airbnb'},
+      {time:'10:00',activity:'Drive to Rayner\'s Orchard \u2014 pre-book the 10:30 tractor tour'},
+      {time:'10:30',activity:'Tractor fruit-tasting tour (~90min) \u2014 winter citrus, 450+ varieties'},
+      {time:'12:30',activity:'Drive to Zonzo Estate (~25min from Healesville) \u2014 lunch booking 13:00'},
+      {time:'13:00',activity:'Vineyard lunch at Zonzo (kid-friendly, generous portions)'},
+      {time:'15:00',activity:'Yarra Valley Dairy \u2014 cheese tasting'},
+      {time:'15:45',activity:'Drive to Yarra Valley Chocolaterie (~15min)'},
+      {time:'16:00',activity:'Chocolaterie playground + tastings'},
+      {time:'17:30',activity:'Back to Airbnb \u2014 final YV night, pack for CBD'},
+    ],
+  },
+  // === PHASE 3: MELBOURNE CBD (Jun 4 \u2013 Jun 8) \u2014 Avis returned, free tram zone ===
+  {
+    label:'Jun 4 (Thu) \u2014 YV \u2192 CBD: Avis return \u2192 check in apartment-hotel \u2192 St Kilda evening',
+    stops:['southbank-playspace','st-kilda-beach','luna-park'],
+    transport:'Drive YV \u2192 CBD via M3 Eastern Fwy (~1hr). Return Avis at CBD branch. Walk to East-Central CBD apartment-hotel. Afternoon: Tram 96 from Bourke St to St Kilda Beach (Stop 132).',
+    schedule:[
+      {time:'09:00',activity:'Breakfast at Airbnb, final pack'},
+      {time:'10:00',activity:'Check out YV Airbnb'},
+      {time:'10:30',activity:'Drive YV \u2192 CBD via M3 (~1hr)'},
+      {time:'11:30',activity:'Return Avis at CBD branch (60 Franklin St)'},
+      {time:'12:00',activity:'Walk to apartment-hotel, drop bags (early check-in if available)'},
+      {time:'12:30',activity:'Lunch nearby \u2014 Higher Ground, Chinatown, or hotel caf\u00e9'},
+      {time:'14:00',activity:'Southbank Boulevard Play Space (kid energy-burner)'},
+      {time:'15:00',activity:'Tram 96 from Bourke St \u2192 St Kilda Beach'},
+      {time:'15:45',activity:'Luna Park rides (pick a few favourites)'},
+      {time:'17:00',activity:'Walk St Kilda Pier at dusk \u2014 Little Penguins on breakwater (Earthcare volunteers)'},
+      {time:'18:00',activity:'Dinner \u2014 Mr Wolf or Radio Mexico'},
+      {time:'19:30',activity:'Tram 96 back to CBD'},
+    ],
+  },
+  {
+    label:'Jun 5 (Fri) \u2014 Klook Combo Tour: Puffing Billy + Phillip Island (08:30 pickup, Hotel Windsor)',
+    stops:['puffing-billy','phillip-island'],
+    transport:'Tour bus pickup at Hotel Windsor (111 Spring St, ~5\u201310min walk from East-Central CBD apartment-hotels \u2014 Citadines on Bourke is 3min away). Bus does all driving. Return to Hotel Windsor ~21:00.',
+  },
+  {
+    label:'Jun 6 (Sat) \u2014 Carlton: Museum & Gardens',
+    stops:['melbourne-museum','brunetti','carlton-gardens','botanic-gardens'],
+    transport:'Tram 1 / 3 / 5 / 6 / 16 / 64 / 67 / 72 north up Swanston St to Melbourne Museum (~15min). Afternoon: tram south to Botanic Gardens (just outside FTZ \u2014 tap on with Myki/contactless).',
+    schedule:[
+      {time:'09:00',activity:'Breakfast at apartment-hotel or local caf\u00e9'},
+      {time:'10:00',activity:'Tram to Melbourne Museum (Carlton)'},
+      {time:'10:15',activity:'Children\'s Gallery (under 8s) \u2014 top priority before Saturday crowds peak'},
+      {time:'12:00',activity:'Dinosaurs gallery for the 9yo'},
+      {time:'13:00',activity:'Lunch at Brunetti Classico (Lygon St)'},
+      {time:'14:30',activity:'Carlton Gardens playground (next to museum)'},
+      {time:'16:00',activity:'Tram south to Royal Botanic Gardens'},
+      {time:'16:30',activity:'Ian Potter Children\'s Garden \u2014 water features, planting'},
+      {time:'18:00',activity:'Tram back to CBD, dinner'},
+    ],
+  },
+  {
+    label:'Jun 7 (Sun) \u2014 Westside: Science & Sky',
+    stops:['scienceworks','sealife','skydeck','south-wharf'],
+    transport:'Werribee or Williamstown line train from Flinders St \u2192 Spotswood (~15min, outside FTZ). Afternoon stops walking-distance from CBD/Southbank.',
+    schedule:[
+      {time:'08:30',activity:'Breakfast at apartment-hotel'},
+      {time:'09:15',activity:'Train Flinders St \u2192 Spotswood Station'},
+      {time:'10:00',activity:'Scienceworks \u2014 Ground Up exhibition (4yo), Nitty Gritty SuperCity, Lightning Room show'},
+      {time:'11:30',activity:'Planetarium session (book ahead)'},
+      {time:'13:00',activity:'Lunch at Scienceworks caf\u00e9'},
+      {time:'14:00',activity:'Train back to Flinders St'},
+      {time:'14:45',activity:'Walk to SEA LIFE Aquarium'},
+      {time:'16:30',activity:'Walk to Skydeck (Eureka Tower) for sunset'},
+      {time:'17:00',activity:'Skydeck 88th floor \u2014 book The Edge add-on for the 9yo'},
+      {time:'18:30',activity:'Dinner at South Wharf Promenade (riverside)'},
+    ],
+  },
+  {
+    label:"Jun 8 (Mon, King's Birthday) \u2014 Brighton + Bourke Street + CBD Arts",
+    stops:['brighton-beach','bourke-street-mall','birrarung-marr','acmi'],
+    transport:'Sandringham line train Flinders St \u2192 Brighton Beach Station (~25min each way, runs on public holiday timetable). Then walking + free trams within FTZ.',
+    schedule:[
+      {time:'08:00',activity:'Breakfast at apartment-hotel'},
+      {time:'09:00',activity:'Walk to Flinders St Station'},
+      {time:'09:15',activity:'Sandringham line train \u2192 Brighton Beach Station'},
+      {time:'09:45',activity:'10min walk south to Dendy St bathing boxes'},
+      {time:'10:00',activity:'Photos at the colourful bathing boxes (morning light)'},
+      {time:'11:00',activity:'Train back to Flinders St'},
+      {time:'12:00',activity:'Lunch at Bourke Street Mall (Royal Arcade or food court)'},
+      {time:'13:30',activity:'Walk Bourke Street Mall \u2014 buskers, Myer, David Jones'},
+      {time:'15:00',activity:'ACMI at Federation Square (free, public holiday hours apply)'},
+      {time:'17:00',activity:'Birrarung Marr / ArtPlay playground'},
+      {time:'18:30',activity:'Farewell dinner \u2014 Chinatown dumplings (New Shanghai) or NGV neighbourhood'},
+      {time:'20:00',activity:'Back to apartment-hotel \u2014 pack for tomorrow\'s flight'},
+    ],
+  },
+  // === PHASE 4: DEPARTURE (Jun 9 Tue) ===
+  {
+    label:'Jun 9 (Tue) \u2014 Higher Ground breakfast \u2192 SkyBus to Tullamarine \u2192 1pm flight',
+    stops:['higher-ground'],
+    transport:'SkyBus from Southern Cross Station to Tullamarine (~25min, AU$22 adult / AU$10 child). Or Uber XL ~AU$70 for family of 4 (~30min, less hassle with luggage). Allow 2.5hr buffer for international check-in.',
+    schedule:[
+      {time:'07:00',activity:'Wake up, final pack'},
+      {time:'08:00',activity:'Walk to Higher Ground (near Southern Cross) \u2014 last Melbourne breakfast'},
+      {time:'09:30',activity:'Check out apartment-hotel'},
+      {time:'10:00',activity:'SkyBus from Southern Cross \u2192 Tullamarine (or pre-booked Uber XL)'},
+      {time:'10:30',activity:'Arrive Tullamarine'},
+      {time:'10:45',activity:'Check-in at terminal'},
+      {time:'13:00',activity:'Flight departs'},
+    ],
+  },
 ];
 
 // ============ MAP STYLES ============
@@ -460,10 +635,9 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
 
   POIS.forEach(p => {
-    const cat = CATS[p.cat];
     const mk = new google.maps.Marker({
       position:{lat:p.lat,lng:p.lng}, map:gmap, title:p.name,
-      icon:{path:google.maps.SymbolPath.CIRCLE,scale:9,fillColor:cat.color,fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5}
+      icon:{path:google.maps.SymbolPath.CIRCLE,scale:4,fillColor:'#94a3b8',fillOpacity:0.55,strokeColor:'#fff',strokeWeight:1}
     });
     mk._poiId = p.id;
     mk._cat = p.cat;
@@ -480,9 +654,6 @@ function initMap() {
 }
 
 // ============ FREE TRAM ZONE OVERLAY ============
-let ftzShapes = [];
-let ftzVisible = true;
-
 function drawFreeTramZone() {
   // Approximate official PTV Free Tram Zone — main CBD block, Queen Vic Market spur, and Docklands.
   const FTZ_PATHS = [
@@ -514,7 +685,7 @@ function drawFreeTramZone() {
   ];
 
   FTZ_PATHS.forEach(path => {
-    ftzShapes.push(new google.maps.Polygon({
+    new google.maps.Polygon({
       paths: path,
       strokeColor: '#10b981',
       strokeOpacity: 0.7,
@@ -524,24 +695,18 @@ function drawFreeTramZone() {
       map: gmap,
       clickable: false,
       zIndex: 0
-    }));
+    });
   });
 
   // Centred label
-  ftzShapes.push(new google.maps.Marker({
+  new google.maps.Marker({
     position: {lat:-37.8132, lng:144.9620},
     map: gmap,
     clickable: false,
     icon: {path:'M 0,0', scale:0},
     label: {text:'\u{1F68B} FREE TRAM ZONE', color:'#065f46', fontSize:'11px', fontWeight:'700'},
     zIndex: 1
-  }));
-}
-
-function toggleFreeTramZone(el) {
-  ftzVisible = !ftzVisible;
-  ftzShapes.forEach(s => s.setMap(ftzVisible ? gmap : null));
-  el.classList.toggle('dimmed');
+  });
 }
 
 function openInfoWindow(id, marker) {
@@ -585,7 +750,7 @@ function renderLegend() {
     Object.entries(CATS).map(([k,v]) =>
       `<div class="ml-item${hiddenCats.has(k)?' dimmed':''}" onclick="toggleCatVis('${k}',this)"><div class="ml-dot" style="background:${v.color}"></div>${v.label}</div>`
     ).join('') +
-    `<div class="ml-item${!ftzVisible?' dimmed':''}" onclick="toggleFreeTramZone(this)" style="margin-top:6px;border-top:1px solid #e5e7eb;padding-top:6px;"><div class="ml-dot" style="background:rgba(16,185,129,.4);border:2px solid #10b981;"></div>Free Tram Zone</div>`;
+    `<div class="ml-item" style="margin-top:6px;border-top:1px solid #e5e7eb;padding-top:6px;cursor:default;"><div class="ml-dot" style="background:rgba(16,185,129,.4);border:2px solid #10b981;"></div>Free Tram Zone</div>`;
 }
 function toggleCatVis(cat,el) {
   if(hiddenCats.has(cat))hiddenCats.delete(cat);else hiddenCats.add(cat);
@@ -618,52 +783,90 @@ function renderItinerary() {
       </div>`;
     }).join('');
     const dc = DAY_COLORS[di%DAY_COLORS.length];
+    const transportHtml = day.transport ? `<div class="day-transport"><span class="day-meta-label">🚊 Transport</span><div class="day-meta-body">${day.transport}</div></div>` : '';
+    const scheduleHtml = day.schedule && day.schedule.length ? `<div class="day-schedule"><span class="day-meta-label">⏰ Suggested schedule</span><table class="schedule-table">${day.schedule.map(s=>`<tr><td class="sched-time">${s.time}</td><td class="sched-act">${s.activity}</td></tr>`).join('')}</table></div>` : '';
     return `<div class="day-block${activeDay!==-1&&activeDay!==di?' collapsed':''}" data-day="${di}">
       <div class="day-header">
         <div class="day-num" style="background:${dc};cursor:pointer;" onclick="focusDay(${di})" title="Show on map">${di+1}</div>
         <div class="day-label" onclick="event.stopPropagation();editDayLabel(${di},this)" title="Click to rename">${day.label}</div>
         <svg class="day-chevron" onclick="toggleDayBlock(${di})" style="cursor:pointer;" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
       </div>
-      <div class="day-body">${stopsHtml}<div class="add-stop-hint">Click a marker on the map or use Explore tab to add stops</div></div>
+      <div class="day-body">${transportHtml}${scheduleHtml}${stopsHtml}<div class="add-stop-hint">Click a marker on the map or use Explore tab to add stops</div></div>
     </div>`;
   }).join('');
   renderDayBar();
   renderRoutes();
-  updateExplorePanel();
+  renderExplore();
+}
+
+function distKm(a, b) {
+  const dLat = (a.lat - b.lat) * 111;
+  const dLng = (a.lng - b.lng) * 111 * Math.cos((a.lat + b.lat) / 2 * Math.PI / 180);
+  return Math.hypot(dLat, dLng);
+}
+
+function nearestDayForPoi(p) {
+  let bestDi = -1, bestDist = Infinity;
+  itinerary.forEach((day, di) => {
+    day.stops.forEach(sid => {
+      const stop = poiMap[sid];
+      if (!stop) return;
+      const d = distKm(p, stop);
+      if (d < bestDist) { bestDist = d; bestDi = di; }
+    });
+  });
+  return { di: bestDi, dist: bestDist };
+}
+
+function updateMarkerColors() {
+  const dayOf = {};
+  itinerary.forEach((day, di) => day.stops.forEach(sid => { dayOf[sid] = di; }));
+  Object.entries(gMarkers).forEach(([id, mk]) => {
+    const di = dayOf[id];
+    if (di !== undefined) {
+      const c = DAY_COLORS[di % DAY_COLORS.length];
+      mk.setIcon({path:google.maps.SymbolPath.CIRCLE,scale:10,fillColor:c,fillOpacity:1,strokeColor:'#fff',strokeWeight:2.5});
+      mk.setZIndex(100);
+    } else {
+      mk.setIcon({path:google.maps.SymbolPath.CIRCLE,scale:4,fillColor:'#94a3b8',fillOpacity:0.55,strokeColor:'#fff',strokeWeight:1});
+      mk.setZIndex(1);
+    }
+  });
 }
 
 function renderExplore() {
   const panel = document.getElementById('panel-explore');
-  const grouped = {};
-  Object.keys(CATS).forEach(k=>grouped[k]=[]);
-  POIS.forEach(p=>grouped[p.cat].push(p));
-  panel.innerHTML = Object.entries(CATS).map(([k,v]) => {
-    return `<div class="cat-section" data-cat="${k}">
+  const byDay = {};
+  POIS.forEach(p => {
+    if (isOnItinerary(p.id)) return;
+    const {di, dist} = nearestDayForPoi(p);
+    if (di < 0) return;
+    if (!byDay[di]) byDay[di] = [];
+    byDay[di].push({p, dist});
+  });
+  Object.keys(byDay).forEach(di => byDay[di].sort((a,b) => a.dist - b.dist));
+
+  panel.innerHTML = itinerary.map((day, di) => {
+    const items = byDay[di] || [];
+    if (items.length === 0) return '';
+    const dc = DAY_COLORS[di % DAY_COLORS.length];
+    return `<div class="cat-section" data-day="${di}">
       <div class="cat-header" onclick="this.parentElement.classList.toggle('collapsed')">
-        <div class="cat-dot" style="background:${v.color}"></div><div class="cat-label">${v.label}</div>
-        <div class="cat-count">${grouped[k].length}</div>
+        <div class="cat-dot" style="background:${dc}"></div><div class="cat-label">Near ${day.label}</div>
+        <div class="cat-count">${items.length}</div>
         <svg class="cat-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
       </div>
-      <div class="cat-body">${grouped[k].map(p => {
-        const onIt = isOnItinerary(p.id);
+      <div class="cat-body">${items.map(({p, dist}) => {
         const tagHtml = p.tags.includes('free')?'<span class="poi-tag" style="background:#dcfce7;color:#16a34a;">Free</span>':'';
-        return `<div class="poi-card${onIt?' on-itinerary':''}" data-poi="${p.id}" onclick="panToPoi('${p.id}')">
+        const distHtml = `<span class="poi-tag" style="background:#f1f5f9;color:#64748b;">${dist<10?dist.toFixed(1):Math.round(dist)} km</span>`;
+        return `<div class="poi-card" data-poi="${p.id}" onclick="panToPoi('${p.id}')">
           ${thumbHtml(p,64,56)}
-          <div class="poi-info"><div class="poi-name">${p.name}</div><div class="poi-desc">${p.desc}</div><div class="poi-tags">${tagHtml}</div></div>
-          <button class="poi-add${onIt?' added':''}" onclick="event.stopPropagation();addFromExplore('${p.id}')">${onIt?'Added':'+ Day '+(activeDay===-1?1:activeDay+1)}</button>
+          <div class="poi-info"><div class="poi-name">${p.name}</div><div class="poi-desc">${p.desc}</div><div class="poi-tags">${tagHtml}${distHtml}</div></div>
+          <button class="poi-add" onclick="event.stopPropagation();addToDay(${di},'${p.id}')">+ Day ${di+1}</button>
         </div>`;
       }).join('')}</div>
     </div>`;
   }).join('');
-}
-
-function updateExplorePanel() {
-  document.querySelectorAll('.poi-card').forEach(card => {
-    const id=card.dataset.poi,on=isOnItinerary(id);
-    card.classList.toggle('on-itinerary',on);
-    const btn=card.querySelector('.poi-add');
-    if(btn){btn.classList.toggle('added',on);btn.textContent=on?'Added':'+ Day '+(activeDay===-1?1:activeDay+1);}
-  });
 }
 
 let dayOverlays = [];
@@ -745,6 +948,7 @@ function renderRoutes() {
       }));
     }
   });
+  updateMarkerColors();
 }
 
 function editDayLabel(di, el) {
