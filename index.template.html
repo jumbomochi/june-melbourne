@@ -193,6 +193,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="sb-tabs">
       <button class="sb-tab active" data-panel="itinerary">Itinerary</button>
       <button class="sb-tab" data-panel="explore">Explore</button>
+      <button class="sb-tab" data-panel="bookings">Bookings</button>
       <button class="sb-tab" data-panel="info">Info &amp; Tips</button>
     </div>
     <div class="sb-panel active" id="panel-itinerary"></div>
@@ -209,8 +210,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
         <div class="info-section"><h3>Weather (June)</h3><div class="info-item">8&ndash;14&deg;C. Pack puffer jackets and beanies. Frequent rain &mdash; always carry rain jackets.</div></div>
         <div class="info-section"><h3>Transport</h3>
-          <div class="info-item"><strong>Rental car (Avis):</strong> Pick up at <strong>Tullamarine airport</strong> on May 31 morning. Drive Werribee Zoo &rarr; YV. Return at <strong>60 Franklin St CBD</strong> on Jun 4 afternoon. ~5 days rental.</div>
-          <div class="info-item"><strong>SkyBus:</strong> Southern Cross Station &rarr; Tullamarine T1 on <strong>departure</strong> day (Jun 9, ~AU$22 adult / $10 child). Or Uber XL ~AU$70 family of 4.</div>
+          <div class="info-item"><strong>Rental car (Hertz):</strong> Airport-only — pick up Tullamarine May 31, return Tullamarine Jun 4 afternoon (~5 days). Hertz Gold = skip-the-counter.</div>
+          <div class="info-item"><strong>Uber XL on Jun 4 + Jun 9:</strong> Tullamarine &harr; CBD ~30min, ~AU$70 per leg for family of 4 with luggage. Pre-book the departure leg the night before.</div>
           <div class="info-item"><strong>Free Tram Zone:</strong> CBD phase (Jun 4&ndash;8) uses free trams within Spencer / La Trobe / Spring / Flinders boundary. Outside the zone, tap on with Myki or contactless card.</div>
           <div class="info-item"><strong>Klook combo tour (Jun 5):</strong> Hotel Windsor pickup 08:30 &mdash; no PT or car needed that day.</div>
         </div>
@@ -219,13 +220,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <div class="info-item"><strong>O&rsquo;Brien Icehouse</strong> (ice skating, Docklands)</div>
         </div>
         <div class="info-section"><h3>Book Ahead</h3>
-          <div class="info-item"><strong>Avis rental</strong> &mdash; Tullamarine pickup May 31, CBD 60 Franklin St drop Jun 4 (~5 days)</div>
-          <div class="info-item"><strong>Werribee Open Range Zoo</strong> &mdash; pre-book Safari Bus slot for May 31 afternoon</div>
-          <div class="info-item"><strong>Healesville Sanctuary</strong> &mdash; pre-book Jun 2 tickets (Tuesday weekday = quiet!)</div>
-          <div class="info-item"><strong>Rayner's Orchard tractor tour</strong> &mdash; book the 10:30 slot for Jun 3</div>
-          <div class="info-item"><strong>Zonzo Estate</strong> &mdash; lunch booking for 13:00 on Jun 3</div>
-          <div class="info-item"><strong>Klook combo tour</strong> &mdash; Puffing Billy + Phillip Island Penguin Parade, 08:30 Hotel Windsor pickup (Jun 5)</div>
-          <div class="info-item"><strong>SEA LIFE + Melbourne Skydeck</strong> &mdash; online tickets cheaper (Jun 7); add The Edge upgrade for the 9yo</div>
+          <div class="info-item">See the <strong>Bookings</strong> tab for the full booking checklist organised by urgency.</div>
+          <div class="info-item" style="font-size:.78rem;color:var(--muted);">Top sells-out risks: Klook combo tour, Werribee Safari Bus, Zonzo lunch, Hertz pickup, Healesville accommodation.</div>
         </div>
         <div class="info-section"><h3>Where to Stay</h3>
           <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>1 airport hotel + 2 stays</strong>: Holiday Inn Melbourne Airport (Night 1, May 30) &rarr; Healesville stay (Nights 2&ndash;5, May 31&ndash;Jun 3 — weekday rates, central for Sanctuary + Maze + Redwoods) &rarr; CBD apartment-hotel like Citadines on Bourke or Adina Flinders (Nights 6&ndash;10, Jun 4&ndash;8). Apartment-hotels recommended over Airbnb for kitchen + housekeeping + indoor pool combo.</em></div>
@@ -236,6 +232,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <div class="info-item"><a href="https://busycitykids.com.au/melbourne-calendar-events" target="_blank">Busy City Kids Calendar</a></div>
           <div class="info-item"><a href="https://tothotornot.com/best-playgrounds-melbourne/" target="_blank">Playground Guide (65 playgrounds)</a></div>
           <div class="info-item"><a href="https://whatson.melbourne.vic.gov.au/article/best-family-friendly-restaurants-melbourne" target="_blank">Family-Friendly Restaurants</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="sb-panel" id="panel-bookings">
+      <div class="info-panel">
+        <div class="info-section"><h3>🔴 Book Now &mdash; can sell out</h3>
+          <div class="info-item"><strong>Hertz car rental</strong> &mdash; Tullamarine pickup May 31 09:30, Tullamarine drop Jun 4 11:45 (~5 days). Gold member = skip the counter. <a href="https://www.hertz.com.au" target="_blank">hertz.com.au</a></div>
+          <div class="info-item"><strong>Werribee Open Range Zoo Safari Bus</strong> &mdash; pre-book May 31 morning slot. Weekend = kids under 16 free. <a href="https://www.zoo.org.au/werribee" target="_blank">zoo.org.au/werribee</a></div>
+          <div class="info-item"><strong>Klook combo tour</strong> &mdash; Puffing Billy + Phillip Island, 08:30 Hotel Windsor pickup Jun 5. Tour caps fill, book ASAP.</div>
+          <div class="info-item"><strong>Rayner's Orchard tractor tour</strong> &mdash; 10:30 slot Jun 3. <a href="https://www.raynersorchard.com.au" target="_blank">raynersorchard.com.au</a></div>
+          <div class="info-item"><strong>Zonzo Estate lunch</strong> &mdash; 13:00 booking Jun 3. <a href="https://www.zonzo.com.au" target="_blank">zonzo.com.au</a></div>
+          <div class="info-item"><strong>Healesville Airbnb / cottage</strong> &mdash; 4 nights May 31&ndash;Jun 3 (weekday-heavy = cheaper than peak)</div>
+          <div class="info-item"><strong>CBD apartment-hotel</strong> &mdash; 5 nights Jun 4&ndash;8. Citadines on Bourke (3min walk to Hotel Windsor tour pickup) recommended.</div>
+          <div class="info-item"><strong>Holiday Inn Melbourne Airport</strong> &mdash; Night 1 May 30. <a href="https://www.ihg.com/holidayinn/hotels/us/en/melbourne-airport/melhi/hoteldetail" target="_blank">Holiday Inn IHG</a></div>
+        </div>
+        <div class="info-section"><h3>🟡 Pre-book online &mdash; cheaper / convenient</h3>
+          <div class="info-item"><strong>Healesville Sanctuary</strong> &mdash; Tue Jun 2 (weekday quiet, kids 4&ndash;15 pay child rate ~AU$22; 4yo free under 5). <a href="https://www.zoo.org.au/healesville" target="_blank">zoo.org.au/healesville</a></div>
+          <div class="info-item"><strong>Hedgend Maze</strong> &mdash; Jun 1 Mon. <a href="https://www.hedgendmaze.com.au" target="_blank">hedgendmaze.com.au</a></div>
+          <div class="info-item"><strong>SEA LIFE + Melbourne Skydeck combo</strong> &mdash; Jun 7 Sun. Online combo saves ~AU$20/pp.</div>
+          <div class="info-item"><strong>Skydeck "The Edge"</strong> add-on &mdash; +AU$15/pp, book a sunset slot for 9yo. <a href="https://www.melbourneskydeck.com.au/" target="_blank">melbourneskydeck.com.au</a></div>
+          <div class="info-item"><strong>Uber XL pre-bookings</strong> &mdash; Jun 4 (Tullamarine&rarr;CBD) and Jun 9 (CBD&rarr;Tullamarine), ~AU$70 per leg. Book Jun 9 leg the night before.</div>
+        </div>
+        <div class="info-section"><h3>🟢 Walk-in / pay at venue</h3>
+          <div class="info-item"><strong>Luna Park</strong> Jun 4 &mdash; pay per ride or buy Unlimited wristband at gate</div>
+          <div class="info-item"><strong>Melbourne Museum</strong> Jun 6 &mdash; <em>kids under 16 always free</em>. Adults ~AU$15 at door.</div>
+          <div class="info-item"><strong>Scienceworks</strong> Jun 7 &mdash; <em>kids under 16 always free</em>. Adults ~AU$15. Book the planetarium slot online though.</div>
+          <div class="info-item"><strong>Yarra Valley Dairy</strong> Jun 3 &mdash; walk-in cheese tasting</div>
+          <div class="info-item"><strong>Brunetti, Innocent Bystander, The Healesville Hotel, New Shanghai</strong> &mdash; book the popular ones (Innocent Bystander, New Shanghai farewell dinner); walk-in for breakfast spots</div>
+        </div>
+        <div class="info-section"><h3>⚪ Free &mdash; no ticket needed</h3>
+          <div class="info-item">Maroondah Reservoir Park, Warburton Redwoods, Yarra Valley Chocolaterie, Southbank Playspace, St Kilda Beach + Pier penguins, Carlton Gardens, Royal Botanic Gardens, Brighton Beach bathing boxes, Bourke Street Mall, ACMI general entry, Birrarung Marr playground</div>
+        </div>
+        <div class="info-section"><h3>🐯 Zoos Victoria membership &mdash; should you?</h3>
+          <div class="info-item" style="font-size:.78rem;"><strong>Pay per visit (your current plan):</strong></div>
+          <div class="info-item" style="font-size:.78rem;">&bull; Werribee Sun May 31 (weekend): 2 adults &times; AU$45 + 2 kids free = <strong>AU$90</strong></div>
+          <div class="info-item" style="font-size:.78rem;">&bull; Healesville Tue Jun 2 (weekday): 2 adults &times; AU$48 + 1 child &times; AU$22 (4yo free) = <strong>AU$118</strong></div>
+          <div class="info-item" style="font-size:.78rem;"><strong>Single-visit total: ~AU$208</strong></div>
+          <div class="info-item" style="margin-top:8px;font-size:.78rem;"><strong>1-Adult Annual Pass ~AU$135:</strong> covers one adult free, the other adult still pays per visit ($93) + 9yo Healesville $22 = <strong>~AU$250</strong> (worse by $42)</div>
+          <div class="info-item" style="font-size:.78rem;"><strong>Family Membership ~AU$169:</strong> covers 2 adults + 4 kids unlimited 12 months = <strong>AU$169 (saves ~AU$39)</strong></div>
+          <div class="info-item" style="margin-top:8px;font-size:.78rem;color:#16a34a;"><strong>Verdict:</strong> Single-adult membership <em>doesn't</em> pay off for this 2-visit pattern. <strong>Family Membership beats single tickets by ~AU$39</strong> and gives 12-month re-entry. Worth it only if you imagine a return Melbourne trip within 12 months. <a href="https://www.zoo.org.au/membership/" target="_blank">Verify current pricing</a> as it changes.</div>
+        </div>
+        <div class="info-section"><h3>💳 Transport setup</h3>
+          <div class="info-item"><strong>Myki card or contactless credit/debit</strong> &mdash; for trams/trains outside Free Tram Zone</div>
+          <div class="info-item"><strong>Daily fare cap</strong> &mdash; ~AU$13.75 family weekday, ~AU$9.65 weekend/PH</div>
+          <div class="info-item"><strong>Uber app</strong> &mdash; required for Jun 4 + Jun 9 transfers, set up before arrival</div>
         </div>
       </div>
     </div>
@@ -315,7 +356,7 @@ const POIS = [
   {id:'snow',cat:'daytrip',name:'Snow Day Trip',area:'Mt Buller (~2.5hr)',lat:-37.1460,lng:146.4390,desc:'Snow play, tobogganing. Check conditions. Lake Mountain closer for young kids.',tags:[],ref:'https://www.littledayout.com/melbourne-family-adventure-kids-nature-wildlife-snow/',icon:'\u26C4'},
   {id:'yv-chocolaterie',cat:'daytrip',name:'Yarra Valley Chocolaterie',area:'Yarra Glen (~1hr)',lat:-37.6580,lng:145.3690,desc:'Free entry & tastings. Playground with slides & swings. Junior Chocolatier classes (45min, bookable). Huge hit with kids.',tags:['free'],ref:'https://mumslittleexplorers.com/things-to-do-yarra-valley-kids/',icon:'\u{1F36B}'},
   {id:'yv-playground',cat:'daytrip',name:'Yarra Glen Adventure Playground',area:'Yarra Glen (~1hr)',lat:-37.6555,lng:145.3730,desc:'Large free adventure playground right in the Yarra Glen township. Great for burning energy.',tags:['free'],ref:'https://tothotornot.com/yarra-valley/',icon:'\u{1F3A0}'},
-  {id:'yv-donna-buang',cat:'daytrip',name:'Mt Donna Buang Snow Play',area:'Warburton (~1.5hr)',lat:-37.7170,lng:145.6800,desc:'Free access. Toboggan hire on site. Snow from mid-June. First snow experience for the kids. Warm up in Warburton village after.',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u26C4'},
+  {id:'yv-donna-buang',cat:'daytrip',name:'Mt Donna Buang Snow Play',area:'Warburton (~1.5hr from CBD)',lat:-37.7526564,lng:145.7030014,desc:'Free access summit (1250m). Toboggan hire on site. Snow typically reliable from mid-June \u2014 late May / early June is hit-or-miss, check VicRoads conditions. Access via C507 Mt Donna Buang Rd FROM WARBURTON TOWNSHIP only \u2014 Acheron Way from Healesville is CLOSED in winter (don\'t trust your GPS).',tags:['free'],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u26C4'},
   {id:'yv-montsalvat',cat:'daytrip',name:'Montsalvat WinterFest',area:'Eltham (~40min)',lat:-37.7320,lng:145.1530,desc:'Historic artists\u2019 colony. WinterFest in June: live music, entertainment, food, mulled wine. Beautiful grounds.',tags:[],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u{1F3B5}'},
   {id:'yv-edendale',cat:'daytrip',name:'Edendale Community Farm',area:'Eltham (~40min)',lat:-37.7280,lng:145.1470,desc:'Hands-on sustainable farm. Feed chickens, meet goats & guinea pigs. Great for 4yo.',tags:[],ref:'https://mumslittleexplorers.com/things-to-do-yarra-valley-kids/',icon:'\u{1F413}'},
   {id:'yv-warburton',cat:'food',name:'Alpine Hotel Warburton',area:'Warburton (~1.5hr)',lat:-37.7530,lng:145.6900,desc:'Fireside winter meals at the base of Mt Donna Buang. Rustic elegance, seasonal menu. Perfect post-snow warm-up.',tags:[],ref:'https://www.visityarravalley.com.au/blog/winter-family-fun-in-the-yarra-valley',icon:'\u{1F525}'},
@@ -396,21 +437,21 @@ const DEFAULT_ITINERARY = [
       {time:'22:00',activity:'Check in, kids to bed'},
     ],
   },
-  // === PHASE 2: YARRA VALLEY VIA WERRIBEE (May 31 \u2013 Jun 3) \u2014 Avis from airport ===
+  // === PHASE 2: YARRA VALLEY VIA WERRIBEE (May 31 \u2013 Jun 3) \u2014 Hertz from Tullamarine ===
   {
-    label:'May 31 (Sun) \u2014 Pickup Avis at airport \u2192 Werribee Open Range Zoo \u2192 drive to YV',
+    label:'May 31 (Sun) \u2014 Pickup Hertz at Tullamarine \u2192 Werribee Open Range Zoo \u2192 drive to Healesville',
     stops:['werribee-zoo','airbnb-yv-healesville'],
-    transport:'Hotel shuttle back to Tullamarine \u2192 Avis airport counter (~10min walk inside terminal). Werribee Zoo is just 25min south via M1. After zoo, drive east via M80 Ring Rd \u2192 M3 Eastern Fwy to YV (~1.5hr). Avoids CBD traffic entirely.',
+    transport:'Hotel shuttle back to Tullamarine \u2192 Hertz airport counter (Hertz Gold members skip the queue). Werribee Zoo is just 25min south via M1. After zoo, drive east via M80 Ring Rd \u2192 M3 Eastern Fwy to Healesville (~1.5hr). Avoids CBD traffic entirely.',
     schedule:[
       {time:'08:00',activity:'Breakfast at Holiday Inn'},
-      {time:'09:00',activity:'Free shuttle to Tullamarine \u2192 Avis counter'},
-      {time:'09:30',activity:'Pickup Avis car'},
+      {time:'09:00',activity:'Free shuttle to Tullamarine \u2192 Hertz counter'},
+      {time:'09:30',activity:'Pickup Hertz car (Gold skip-the-counter)'},
       {time:'10:00',activity:'Drive M1 south \u2192 Werribee Open Range Zoo (~25min)'},
       {time:'10:30',activity:'Arrive zoo \u2014 book Safari Bus tour'},
       {time:'11:00',activity:'Safari Bus tour (~50min) \u2014 African savannah'},
       {time:'12:30',activity:'Lunch at Meerkat Bistro (zoo caf\u00e9)'},
       {time:'13:30',activity:'Walking circuit \u2014 gorilla, hippo, lion enclosures'},
-      {time:'15:30',activity:'Leave Werribee, drive east via M80 \u2192 M3 to YV'},
+      {time:'15:30',activity:'Leave Werribee, drive east via M80 \u2192 M3 to Healesville'},
       {time:'17:30',activity:'Arrive Healesville Airbnb, unpack'},
       {time:'18:30',activity:'Easy dinner \u2014 walk into Healesville town (The Healesville Hotel or Innocent Bystander)'},
     ],
@@ -461,21 +502,22 @@ const DEFAULT_ITINERARY = [
       {time:'17:30',activity:'Back to Airbnb \u2014 final YV night, pack for CBD'},
     ],
   },
-  // === PHASE 3: MELBOURNE CBD (Jun 4 \u2013 Jun 8) \u2014 Avis returned, free tram zone ===
+  // === PHASE 3: MELBOURNE CBD (Jun 4 \u2013 Jun 8) \u2014 Hertz returned at airport, free tram zone ===
   {
-    label:'Jun 4 (Thu) \u2014 YV \u2192 CBD: Avis return \u2192 check in apartment-hotel \u2192 St Kilda evening',
+    label:'Jun 4 (Thu) \u2014 Healesville \u2192 Tullamarine: Hertz return \u2192 Uber to CBD \u2192 St Kilda evening',
     stops:['southbank-playspace','st-kilda-beach','luna-park'],
-    transport:'Drive YV \u2192 CBD via M3 Eastern Fwy (~1hr). Return Avis at CBD branch. Walk to East-Central CBD apartment-hotel. Afternoon: Tram 96 from Bourke St to St Kilda Beach (Stop 132).',
+    transport:'Drive Healesville \u2192 Tullamarine via M3 + M80 (~1hr 15min, avoids CBD). Return Hertz at airport. Uber XL to CBD apartment-hotel (~30min, ~AU$70). Afternoon: Tram 96 from Bourke St to St Kilda Beach (Stop 132).',
     schedule:[
       {time:'09:00',activity:'Breakfast at Airbnb, final pack'},
-      {time:'10:00',activity:'Check out YV Airbnb'},
-      {time:'10:30',activity:'Drive YV \u2192 CBD via M3 (~1hr)'},
-      {time:'11:30',activity:'Return Avis at CBD branch (60 Franklin St)'},
-      {time:'12:00',activity:'Walk to apartment-hotel, drop bags (early check-in if available)'},
-      {time:'12:30',activity:'Lunch nearby \u2014 Higher Ground, Chinatown, or hotel caf\u00e9'},
-      {time:'14:00',activity:'Southbank Boulevard Play Space (kid energy-burner)'},
-      {time:'15:00',activity:'Tram 96 from Bourke St \u2192 St Kilda Beach'},
-      {time:'15:45',activity:'Luna Park rides (pick a few favourites)'},
+      {time:'10:00',activity:'Check out Healesville Airbnb'},
+      {time:'10:30',activity:'Drive Healesville \u2192 Tullamarine via M3 + M80 (~1hr 15min)'},
+      {time:'11:45',activity:'Return Hertz at Tullamarine + fuel-up'},
+      {time:'12:15',activity:'Uber XL Tullamarine \u2192 CBD apartment-hotel (~30min, ~AU$70)'},
+      {time:'12:45',activity:'Arrive CBD \u2014 drop bags (early check-in if available)'},
+      {time:'13:30',activity:'Lunch nearby \u2014 Higher Ground, Chinatown, or hotel caf\u00e9'},
+      {time:'15:00',activity:'Southbank Boulevard Play Space (kid energy-burner) OR straight to tram'},
+      {time:'15:30',activity:'Tram 96 from Bourke St \u2192 St Kilda Beach'},
+      {time:'16:15',activity:'Luna Park rides (pick a few favourites)'},
       {time:'17:00',activity:'Walk St Kilda Pier at dusk \u2014 Little Penguins on breakwater (Earthcare volunteers)'},
       {time:'18:00',activity:'Dinner \u2014 Mr Wolf or Radio Mexico'},
       {time:'19:30',activity:'Tram 96 back to CBD'},
@@ -541,15 +583,15 @@ const DEFAULT_ITINERARY = [
   },
   // === PHASE 4: DEPARTURE (Jun 9 Tue) ===
   {
-    label:'Jun 9 (Tue) \u2014 Higher Ground breakfast \u2192 SkyBus to Tullamarine \u2192 1pm flight',
+    label:'Jun 9 (Tue) \u2014 Higher Ground breakfast \u2192 Uber XL to Tullamarine \u2192 1pm flight',
     stops:['higher-ground'],
-    transport:'SkyBus from Southern Cross Station to Tullamarine (~25min, AU$22 adult / AU$10 child). Or Uber XL ~AU$70 for family of 4 (~30min, less hassle with luggage). Allow 2.5hr buffer for international check-in.',
+    transport:'Uber XL CBD \u2192 Tullamarine (~30min, ~AU$70 family of 4 with luggage). Pre-book via Uber app the night before for a guaranteed XL. Allow 2.5hr buffer for international check-in.',
     schedule:[
       {time:'07:00',activity:'Wake up, final pack'},
       {time:'08:00',activity:'Walk to Higher Ground (near Southern Cross) \u2014 last Melbourne breakfast'},
-      {time:'09:30',activity:'Check out apartment-hotel'},
-      {time:'10:00',activity:'SkyBus from Southern Cross \u2192 Tullamarine (or pre-booked Uber XL)'},
-      {time:'10:30',activity:'Arrive Tullamarine'},
+      {time:'09:30',activity:'Check out apartment-hotel, gather bags'},
+      {time:'10:00',activity:'Pre-booked Uber XL pickup from hotel \u2192 Tullamarine'},
+      {time:'10:30',activity:'Arrive Tullamarine T2 (international)'},
       {time:'10:45',activity:'Check-in at terminal'},
       {time:'13:00',activity:'Flight departs'},
     ],
