@@ -224,7 +224,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <div class="info-item" style="font-size:.78rem;color:var(--muted);">Top sells-out risks: Klook combo tour, Werribee Safari Bus, Zonzo lunch, Hertz pickup, Healesville accommodation.</div>
         </div>
         <div class="info-section"><h3>Where to Stay</h3>
-          <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>1 airport hotel + 2 stays</strong>: Holiday Inn Melbourne Airport (Night 1, May 30) &rarr; Healesville stay (Nights 2&ndash;5, May 31&ndash;Jun 3 — weekday rates, central for Sanctuary + Maze + Redwoods) &rarr; CBD apartment-hotel like Citadines on Bourke or Adina Flinders (Nights 6&ndash;10, Jun 4&ndash;8). Apartment-hotels recommended over Airbnb for kitchen + housekeeping + indoor pool combo.</em></div>
+          <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>1 airport hotel + 2 stays</strong>: Holiday Inn Melbourne Airport (Night 1, May 30) &rarr; <strong>Lady Protea, Warburton</strong> (Nights 2&ndash;5, May 31&ndash;Jun 3 — walking distance to town + river, fireplace, modern kitchen) &rarr; CBD apartment-hotel like Citadines on Bourke or Adina Flinders (Nights 6&ndash;10, Jun 4&ndash;8).</em></div>
           <div class="info-item" style="margin-top:4px;">Browse all listings on the <strong>Explore tab &rarr; Accommodation</strong> section.</div>
         </div>
         <div class="info-section"><h3>Useful Links</h3>
@@ -243,7 +243,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <div class="info-item"><strong>Klook combo tour</strong> &mdash; Puffing Billy + Phillip Island, 08:30 Hotel Windsor pickup Jun 5. Tour caps fill, book ASAP.</div>
           <div class="info-item"><strong>Rayner's Orchard tractor tour</strong> &mdash; 10:30 slot Jun 3. <a href="https://www.raynersorchard.com.au" target="_blank">raynersorchard.com.au</a></div>
           <div class="info-item"><strong>Zonzo Estate lunch</strong> &mdash; 13:00 booking Jun 3. <a href="https://www.zonzo.com.au" target="_blank">zonzo.com.au</a></div>
-          <div class="info-item"><strong>Healesville Airbnb / cottage</strong> &mdash; 4 nights May 31&ndash;Jun 3 (weekday-heavy = cheaper than peak)</div>
+          <div class="info-item"><strong>Lady Protea, Warburton</strong> &mdash; 4 nights May 31&ndash;Jun 3. Confirm with host: any heating beyond the fireplace (split system in bedrooms?) for the cold June overnight temps. <a href="https://www.ladyprotea.com.au/" target="_blank">ladyprotea.com.au</a></div>
           <div class="info-item"><strong>CBD apartment-hotel</strong> &mdash; 5 nights Jun 4&ndash;8. Citadines on Bourke (3min walk to Hotel Windsor tour pickup) recommended.</div>
           <div class="info-item"><strong>Holiday Inn Melbourne Airport</strong> &mdash; Night 1 May 30. <a href="https://www.ihg.com/holidayinn/hotels/us/en/melbourne-airport/melhi/hoteldetail" target="_blank">Holiday Inn IHG</a></div>
         </div>
@@ -411,6 +411,7 @@ const POIS = [
   {id:'airbnb-collingwood-1',cat:'stay',name:'Collingwood Family-Friendly',area:'Collingwood',lat:-37.7985,lng:145.0010,desc:'Light-filled apartments in creative Collingwood. Near Children\u2019s Farm, caf\u00e9s, street art. 10min tram to CBD.',tags:[],ref:'https://www.airbnb.com/collingwood-australia/stays/family-friendly',icon:'\u{1F3A8}'},
   {id:'airbnb-yv-healesville',cat:'stay',name:'Healesville Family Cottages',area:'Healesville (Yarra Valley)',lat:-37.6535,lng:145.5200,desc:'Family cottages & houses with fenced yards, fireplaces, cubby houses. Walk to town. Perfect overnight base for 2-day YV trip.',tags:[],ref:'https://www.airbnb.com/healesville-australia/stays/family-friendly',icon:'\u{1F3E1}'},
   {id:'airbnb-yv-yarraglen',cat:'stay',name:'Yarra Glen Family Stays',area:'Yarra Glen (Yarra Valley)',lat:-37.6560,lng:145.3740,desc:'Cottages on acreage with playhouses, slides, fire pits. Near Chocolaterie & wineries. Great for kids.',tags:[],ref:'https://www.airbnb.com/yarra-glen-australia/stays/family-friendly',icon:'\u{1F333}'},
+  {id:'lady-protea-warburton',cat:'stay',name:'Lady Protea — Warburton',area:'Warburton (booked)',lat:-37.7530,lng:145.6900,desc:'2BR cottage walking distance to Warburton shops, Yarra River and bike trail. Modern kitchen, fireplace, bath with views, citrus garden. Confirm with host: any additional split-system heating for kids’ bedroom in June (overnight 2–5°C).',tags:[],ref:'https://www.ladyprotea.com.au/',icon:'\u{1F3E1}'},
 ];
 
 const CATS = {
@@ -437,11 +438,11 @@ const DEFAULT_ITINERARY = [
       {time:'22:00',activity:'Check in, kids to bed'},
     ],
   },
-  // === PHASE 2: YARRA VALLEY VIA WERRIBEE (May 31 \u2013 Jun 3) \u2014 Hertz from Tullamarine ===
+  // === PHASE 2: WARBURTON (Lady Protea) VIA WERRIBEE (May 31 \u2013 Jun 3) \u2014 Hertz from Tullamarine ===
   {
-    label:'May 31 (Sun) \u2014 Pickup Hertz at Tullamarine \u2192 Werribee Open Range Zoo \u2192 drive to Healesville',
-    stops:['werribee-zoo','airbnb-yv-healesville'],
-    transport:'Hotel shuttle back to Tullamarine \u2192 Hertz airport counter (Hertz Gold members skip the queue). Werribee Zoo is just 25min south via M1. After zoo, drive east via M80 Ring Rd \u2192 M3 Eastern Fwy to Healesville (~1.5hr). Avoids CBD traffic entirely.',
+    label:'May 31 (Sun) \u2014 Pickup Hertz at Tullamarine \u2192 Werribee Open Range Zoo \u2192 drive to Warburton (Lady Protea)',
+    stops:['werribee-zoo','lady-protea-warburton'],
+    transport:'Hotel shuttle back to Tullamarine \u2192 Hertz airport counter (Gold = skip the counter). Werribee Zoo is just 25min south via M1. After zoo, drive east via M80 Ring Rd \u2192 M3 \u2192 Warburton Hwy to Warburton (~2hr total \u2014 slightly longer than to Healesville). Avoids CBD traffic.',
     schedule:[
       {time:'08:00',activity:'Breakfast at Holiday Inn'},
       {time:'09:00',activity:'Free shuttle to Tullamarine \u2192 Hertz counter'},
@@ -451,71 +452,67 @@ const DEFAULT_ITINERARY = [
       {time:'11:00',activity:'Safari Bus tour (~50min) \u2014 African savannah'},
       {time:'12:30',activity:'Lunch at Meerkat Bistro (zoo caf\u00e9)'},
       {time:'13:30',activity:'Walking circuit \u2014 gorilla, hippo, lion enclosures'},
-      {time:'15:30',activity:'Leave Werribee, drive east via M80 \u2192 M3 to Healesville'},
-      {time:'17:30',activity:'Arrive Healesville Airbnb, unpack'},
-      {time:'18:30',activity:'Easy dinner \u2014 walk into Healesville town (The Healesville Hotel or Innocent Bystander)'},
+      {time:'15:30',activity:'Leave Werribee, drive M80 \u2192 M3 \u2192 Warburton Hwy (~2hr)'},
+      {time:'18:00',activity:'Arrive Lady Protea Warburton, unpack, light fireplace'},
+      {time:'19:00',activity:'Easy dinner \u2014 walk into Warburton town (Alpine Hotel, Warburton Bakery) or pickup'},
     ],
   },
   {
-    label:'Jun 1 (Mon) \u2014 YV warm-up: Hedgend Maze + Maroondah Reservoir',
-    stops:['beechworth-bakery','hedgend-maze','maroondah-reservoir'],
-    transport:'All stops within 25min drive of base. Quiet weekday \u2014 most YV attractions open with no crowds.',
+    label:'Jun 1 (Mon) \u2014 Warburton free & easy (pick your own pace)',
+    stops:['yv-redwood'],
+    transport:'Everything is walking or short drive from Lady Protea. Stay local \u2014 no must-dos today. Drive only if you feel like it.',
     schedule:[
-      {time:'08:30',activity:'Breakfast at Beechworth Bakery in Healesville (Beesting pastry, coffee)'},
-      {time:'10:00',activity:'Drive to Hedgend Maze \u2014 giant hedge maze + fossil dig'},
-      {time:'13:00',activity:'Lunch \u2014 My Little Kitchen in Healesville (heated outdoor seating)'},
-      {time:'14:30',activity:'Maroondah Reservoir Park \u2014 dam wall walk, playground, picnic'},
-      {time:'17:00',activity:'Back to Airbnb'},
-      {time:'18:30',activity:'Dinner \u2014 Innocent Bystander (wood-fired pizza, bustling family vibe)'},
+      {time:'morning',activity:'Slow start \u2014 coffee at Three Sugars or Warburton Bakery (walk from base)'},
+      {time:'option A',activity:'Warburton Redwood Forest (10min drive) \u2014 flat magical walk through California redwoods'},
+      {time:'option B',activity:'Yarra River bike trail / O\'Shannassy Aqueduct Trail \u2014 walk straight from Lady Protea'},
+      {time:'option C',activity:'Rainforest Gallery skywalk (mid-mountain, 15min drive up C507) \u2014 fern gully canopy walk, FREE'},
+      {time:'option D',activity:'Rayner\'s Orchard tractor tour (20min south to Woori Yallock) \u2014 book the 10:30 slot if you want it'},
+      {time:'lunch',activity:'Pop into Warburton village \u2014 pizza at Alpine Hotel, or pack a picnic'},
+      {time:'afternoon',activity:'Riverside walk, fireplace at base, naps as needed'},
+      {time:'18:30',activity:'Dinner \u2014 Alpine Hotel Warburton (fireside meals) or cook at Lady Protea'},
     ],
   },
   {
-    label:'Jun 2 (Tue) \u2014 Healesville Sanctuary (weekday quiet!) + Warburton Redwoods',
-    stops:['healesville','yv-redwood'],
-    transport:'Healesville Sanctuary ~5min from Healesville town. Warburton Redwoods ~45min east via Maroondah Hwy.',
+    label:'Jun 2 (Tue) \u2014 Healesville Sanctuary (the only must-do!) + free afternoon',
+    stops:['healesville','beechworth-bakery'],
+    transport:'Drive Warburton \u2192 Healesville Sanctuary (~40min west via Maroondah Hwy). Single-day round trip \u2014 quiet weekday timing gives you the whole place near-empty.',
     schedule:[
-      {time:'08:00',activity:'Breakfast at Airbnb'},
-      {time:'09:00',activity:'Healesville Sanctuary opens \u2014 straight to Platypus House (weekday = no queue!)'},
+      {time:'07:30',activity:'Breakfast at Lady Protea (40min drive west today, leave earlier than other days)'},
+      {time:'08:15',activity:'Drive Warburton \u2192 Healesville Sanctuary'},
+      {time:'09:00',activity:'Sanctuary opens \u2014 Platypus House first (weekday = no queue!)'},
       {time:'10:00',activity:'Tales from Platypus Creek show'},
       {time:'11:00',activity:'Spirits of the Sky bird show (outdoor amphitheatre)'},
-      {time:'12:30',activity:'Lunch at sanctuary caf\u00e9 \u2014 quiet, no crowd pressure'},
-      {time:'13:30',activity:'Drive east to Warburton Redwood Forest (~45min)'},
-      {time:'14:30',activity:'Walk through California redwoods (flat, easy 30\u201360min)'},
-      {time:'16:00',activity:'Drive back via Warburton village (mulled wine stop?)'},
-      {time:'17:30',activity:'Back to Airbnb'},
-      {time:'18:30',activity:'Dinner \u2014 The Healesville Hotel (family-friendly pub) or Airbnb-in'},
+      {time:'12:30',activity:'Lunch \u2014 sanctuary caf\u00e9 OR drive 5min into Healesville (Beechworth Bakery, My Little Kitchen, Innocent Bystander)'},
+      {time:'14:00',activity:'OPTIONAL: Hedgend Maze on the drive home (15min east of Healesville) OR head straight back'},
+      {time:'15:30',activity:'Arrive Lady Protea \u2014 kids nap, parents relax'},
+      {time:'18:30',activity:'Dinner \u2014 Alpine Hotel Warburton or cook in'},
     ],
   },
   {
-    label:'Jun 3 (Wed) \u2014 Orchard, Dairy, Chocolaterie & Zonzo Lunch',
-    stops:['yv-rayners','yv-zonzo','yv-dairy','yv-chocolaterie'],
-    transport:'All stops cluster ~20\u201330min drive west of Healesville in the Yarra Glen / Yering / Woori Yallock cluster.',
+    label:'Jun 3 (Wed) \u2014 Free & easy (pick your own day)',
+    stops:['yv-zonzo','yv-dairy','yv-chocolaterie'],
+    transport:'Up to you. Wineries-cluster day = ~50min drive west to Yarra Glen / Yering area. Or stay local in Warburton again. Last night before transitioning to CBD.',
     schedule:[
-      {time:'08:30',activity:'Breakfast at Airbnb'},
-      {time:'10:00',activity:'Drive to Rayner\'s Orchard \u2014 pre-book the 10:30 tractor tour'},
-      {time:'10:30',activity:'Tractor fruit-tasting tour (~90min) \u2014 winter citrus, 450+ varieties'},
-      {time:'12:30',activity:'Drive to Zonzo Estate (~25min from Healesville) \u2014 lunch booking 13:00'},
-      {time:'13:00',activity:'Vineyard lunch at Zonzo (kid-friendly, generous portions)'},
-      {time:'15:00',activity:'Yarra Valley Dairy \u2014 cheese tasting'},
-      {time:'15:45',activity:'Drive to Yarra Valley Chocolaterie (~15min)'},
-      {time:'16:00',activity:'Chocolaterie playground + tastings'},
-      {time:'17:30',activity:'Back to Airbnb \u2014 final YV night, pack for CBD'},
+      {time:'option 1',activity:'WINERIES DAY (~50min west to Yarra Glen): Zonzo lunch booking 13:00 \u2192 Yarra Valley Dairy \u2192 Chocolaterie playground'},
+      {time:'option 2',activity:'STAY LOCAL: any Warburton stops you didn\'t do Jun 1 (Redwoods, Rainforest Gallery, bike trail, Rayner\'s Orchard 20min south)'},
+      {time:'option 3',activity:'MIX: morning local, drive west for Zonzo lunch, back via Chocolaterie for the playground in afternoon'},
+      {time:'evening',activity:'Pack for tomorrow\'s CBD transition. Final Warburton dinner.'},
     ],
   },
   // === PHASE 3: MELBOURNE CBD (Jun 4 \u2013 Jun 8) \u2014 Hertz returned at airport, free tram zone ===
   {
-    label:'Jun 4 (Thu) \u2014 Healesville \u2192 Tullamarine: Hertz return \u2192 Uber to CBD \u2192 St Kilda evening',
+    label:'Jun 4 (Thu) \u2014 Warburton \u2192 Tullamarine: Hertz return \u2192 Uber to CBD \u2192 St Kilda evening',
     stops:['southbank-playspace','st-kilda-beach','luna-park'],
-    transport:'Drive Healesville \u2192 Tullamarine via M3 + M80 (~1hr 15min, avoids CBD). Return Hertz at airport. Uber XL to CBD apartment-hotel (~30min, ~AU$70). Afternoon: Tram 96 from Bourke St to St Kilda Beach (Stop 132).',
+    transport:'Drive Warburton \u2192 Tullamarine via Warburton Hwy \u2192 M3 + M80 (~1hr 30min, avoids CBD). Return Hertz at airport. Uber XL to CBD apartment-hotel (~30min, ~AU$70). Afternoon: Tram 96 from Bourke St to St Kilda Beach (Stop 132).',
     schedule:[
-      {time:'09:00',activity:'Breakfast at Airbnb, final pack'},
-      {time:'10:00',activity:'Check out Healesville Airbnb'},
-      {time:'10:30',activity:'Drive Healesville \u2192 Tullamarine via M3 + M80 (~1hr 15min)'},
-      {time:'11:45',activity:'Return Hertz at Tullamarine + fuel-up'},
-      {time:'12:15',activity:'Uber XL Tullamarine \u2192 CBD apartment-hotel (~30min, ~AU$70)'},
-      {time:'12:45',activity:'Arrive CBD \u2014 drop bags (early check-in if available)'},
-      {time:'13:30',activity:'Lunch nearby \u2014 Higher Ground, Chinatown, or hotel caf\u00e9'},
-      {time:'15:00',activity:'Southbank Boulevard Play Space (kid energy-burner) OR straight to tram'},
+      {time:'08:30',activity:'Breakfast at Lady Protea, final pack, douse the fireplace'},
+      {time:'09:30',activity:'Check out Warburton Airbnb'},
+      {time:'10:00',activity:'Drive Warburton \u2192 Tullamarine via M3 + M80 (~1hr 30min)'},
+      {time:'11:30',activity:'Return Hertz at Tullamarine + fuel-up'},
+      {time:'12:00',activity:'Uber XL Tullamarine \u2192 CBD apartment-hotel (~30min, ~AU$70)'},
+      {time:'12:30',activity:'Arrive CBD \u2014 drop bags (early check-in if available)'},
+      {time:'13:15',activity:'Lunch nearby \u2014 Higher Ground, Chinatown, or hotel caf\u00e9'},
+      {time:'14:30',activity:'Southbank Boulevard Play Space (kid energy-burner) OR straight to tram'},
       {time:'15:30',activity:'Tram 96 from Bourke St \u2192 St Kilda Beach'},
       {time:'16:15',activity:'Luna Park rides (pick a few favourites)'},
       {time:'17:00',activity:'Walk St Kilda Pier at dusk \u2014 Little Penguins on breakwater (Earthcare volunteers)'},
