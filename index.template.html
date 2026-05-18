@@ -231,7 +231,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
         <div class="info-section"><h3>Book Ahead</h3>
           <div class="info-item">See the <strong>Bookings</strong> tab for the full booking checklist organised by urgency.</div>
-          <div class="info-item" style="font-size:.78rem;color:var(--muted);">Top sells-out risks: Klook combo tour, Werribee Safari Bus, Zonzo lunch, Hertz pickup, Healesville accommodation.</div>
+          <div class="info-item" style="font-size:.78rem;color:var(--muted);">Top sells-out risks: Pelago combo tour, Zonzo lunch, Hertz pickup, Lady Protea / UNO Melbourne nights.</div>
         </div>
         <div class="info-section"><h3>Where to Stay</h3>
           <div class="info-item" style="font-size:.78rem;"><em>This trip uses <strong>3 booked stays</strong>: Holiday Inn Melbourne Airport (Night 1, May 30) &rarr; <strong>Lady Protea, Warburton</strong> (Nights 2&ndash;5, May 31&ndash;Jun 3) &rarr; <strong>UNO Melbourne</strong> at 111 A’Beckett St CBD (Nights 6&ndash;10, Jun 4&ndash;8 — inside Free Tram Zone, ~5min walk to Hertz CBD branch).</em></div>
@@ -260,7 +260,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="info-panel">
         <div class="info-section"><h3>🔴 Book Now &mdash; can sell out</h3>
           <div class="info-item"><strong>Hertz car rental</strong> &mdash; Tullamarine pickup May 31 09:30. Jun 4 CBD return: <strong>drop family + bags at UNO (111 A’Beckett St) FIRST</strong>, then solo-drive ~2min to <strong>Hertz at 8 Franklin St</strong>. Gold member = skip the counter. <a href="https://www.hertz.com.au" target="_blank">hertz.com.au</a></div>
-          <div class="info-item"><strong>Werribee Open Range Zoo Safari Bus</strong> &mdash; pre-book May 31 morning slot (capacity-controlled even for members). Weekend = kids under 16 free at the gate. <a href="https://www.zoo.org.au/werribee" target="_blank">zoo.org.au/werribee</a></div>
+          <div class="info-item"><strong>Werribee Open Range Zoo</strong> &mdash; Sun May 31. <strong>Free Safari Bus is walk-up only (no booking)</strong>, queue at Safari Station ~15min before posted departures (10:40 / 11:30 / 12:20 etc, more frequent on weekends). Kids under 16 free at the gate on weekends. <a href="https://www.zoo.org.au/werribee" target="_blank">zoo.org.au/werribee</a></div>
           <div class="info-item"><strong>Pelago combo tour</strong> &mdash; Puffing Billy + Phillip Island, 08:30 pickup at 287 Lonsdale St Jun 5 (booked). ~5min walk south from UNO.</div>
           <div class="info-item"><strong>Rayner's Orchard tractor tour</strong> &mdash; <strong>10:30 slot Jun 3 (morning anchor)</strong>. <a href="https://www.raynersorchard.com.au" target="_blank">raynersorchard.com.au</a></div>
           <div class="info-item"><strong>Zonzo Estate lunch</strong> &mdash; 13:00 booking Jun 3 (after Rayner&rsquo;s, before Chocolaterie). <a href="https://www.zonzo.com.au" target="_blank">zonzo.com.au</a></div>
@@ -368,7 +368,7 @@ const POIS = [
   {id:'ngv',cat:'indoor',name:'NGV (National Gallery)',area:'Southbank',lat:-37.8226,lng:144.9689,desc:"Free entry. Kids' programs & interactive family trails.",tags:['free'],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F5BC}'},
   // WILDLIFE
   {id:'melbourne-zoo',cat:'wildlife',name:'Melbourne Zoo',area:'Parkville',lat:-37.7842,lng:144.9517,desc:'250+ species, Dino Trail. Kids free on weekends. Combine with Royal Park playground.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F418}'},
-  {id:'werribee-zoo',cat:'wildlife',name:'Werribee Open Range Zoo',area:'Werribee (35min)',lat:-37.9230,lng:144.6680,desc:'Smaller, great safari bus tour for young kids.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F992}'},
+  {id:'werribee-zoo',cat:'wildlife',name:'Werribee Open Range Zoo',area:'Werribee (35min)',lat:-37.9230,lng:144.6680,desc:'Free Safari Bus included with admission (40min, driver-narrated, walk-up boarding every ~20min, more frequent on weekends). Optional Deluxe Safari Adventure $60/pp ($54 members, 75min, max 20 guests, pre-book) — but the free bus covers the same animals.',tags:[],ref:'https://www.zoo.org.au/werribee/',icon:'\u{1F992}'},
   {id:'collingwood-farm',cat:'wildlife',name:"Collingwood Children's Farm",area:'Abbotsford',lat:-37.7995,lng:145.0105,desc:'Milk cows, feed chickens, pony rides, baby lambs.',tags:[],ref:'https://tothotornot.com/things-to-do-melbourne-babies-toddlers-kids/',icon:'\u{1F404}'},
   {id:'botanic-gardens',cat:'wildlife',name:'Royal Botanic Gardens',area:'South Yarra',lat:-37.8304,lng:144.9796,desc:"Free. Ian Potter Children's Garden \u2014 water features, planting.",tags:['free'],ref:'https://www.australia.com/en-us/places/melbourne-and-surrounds/with-kids.html',icon:'\u{1F33F}'},
   {id:'luna-park',cat:'wildlife',name:'Luna Park',area:'St Kilda',lat:-37.8677,lng:144.9763,desc:'Rides for all ages. Walk St Kilda Beach & see penguins at pier at dusk.',tags:[],ref:'https://www.visitmelbourne.com/see-and-do/family-activities',icon:'\u{1F3A1}'},
@@ -473,8 +473,8 @@ const DEFAULT_ITINERARY = [
       {time:'09:00',activity:'Free shuttle to Tullamarine \u2192 Hertz counter'},
       {time:'09:30',activity:'Pickup Hertz car (Gold skip-the-counter)'},
       {time:'10:00',activity:'Drive M1 south \u2192 Werribee Open Range Zoo (~25min)'},
-      {time:'10:30',activity:'Arrive zoo \u2014 book Safari Bus tour'},
-      {time:'11:00',activity:'Safari Bus tour (~50min) \u2014 African savannah'},
+      {time:'10:25',activity:'Arrive zoo \u2014 walk straight to Safari Station, queue for the 10:40 free Safari Bus (walk-up boarding, no booking)'},
+      {time:'10:40',activity:'Free Safari Bus tour (~40min) \u2014 Asian / North American / African grasslands, driver-narrated'},
       {time:'12:30',activity:'Lunch at Meerkat Bistro (zoo caf\u00e9)'},
       {time:'13:30',activity:'Walking circuit \u2014 gorilla, hippo, lion enclosures'},
       {time:'15:30',activity:'Leave Werribee, drive M80 \u2192 M3 \u2192 Warburton Hwy (~2hr)'},
