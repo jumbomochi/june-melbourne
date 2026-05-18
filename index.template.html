@@ -270,7 +270,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
         <div class="info-section"><h3>🟡 Pre-book online &mdash; cheaper / convenient</h3>
           <div class="info-item"><strong>✅ Healesville Sanctuary</strong> &mdash; <strong>BOOKED</strong>: Tue Jun 2 (weekday quiet). Show Zoos Vic digital member card at the gate. <a href="https://www.zoo.org.au/healesville" target="_blank">zoo.org.au/healesville</a></div>
-          <div class="info-item"><strong>Yering Station</strong> &mdash; Tue Jun 2 afternoon stop after Healesville (~25min west). Cellar door + Matt&rsquo;s Bar walk-in, no booking needed. <a href="https://www.yering.com/" target="_blank">yering.com</a></div>
+          <div class="info-item"><strong>Yering Station</strong> &mdash; Wed Jun 3 afternoon stop after Zonzo lunch (~5-10min south of Zonzo, same Yarra Glen cluster). Cellar door + Matt&rsquo;s Bar walk-in, no booking needed. <a href="https://www.yering.com/" target="_blank">yering.com</a></div>
           <div class="info-item"><strong>SEA LIFE + Melbourne Skydeck combo</strong> &mdash; Jun 7 Sun. Online combo saves ~AU$20/pp.</div>
           <div class="info-item"><strong>Skydeck "The Edge"</strong> add-on &mdash; +AU$15/pp, book a sunset slot for 9yo. <a href="https://www.melbourneskydeck.com.au/" target="_blank">melbourneskydeck.com.au</a></div>
           <div class="info-item"><strong>Uber XL pre-booking</strong> &mdash; Jun 9 UNO Melbourne &rarr; Tullamarine, ~AU$70. Book the night before for a guaranteed XL.</div>
@@ -279,7 +279,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <div class="info-item"><strong>Luna Park</strong> Jun 4 &mdash; pay per ride or buy Unlimited wristband at gate</div>
           <div class="info-item"><strong>Melbourne Museum</strong> Jun 6 &mdash; <em>kids under 16 always free</em>. Adults ~AU$15 at door.</div>
           <div class="info-item"><strong>Scienceworks</strong> Jun 7 &mdash; <em>kids under 16 always free</em>. Adults ~AU$15. Book the planetarium slot online though.</div>
-          <div class="info-item"><strong>Yarra Valley Dairy</strong> &mdash; walk-in cheese tasting (optional bonus stop, may skip with the tight Rayner&rsquo;s → Zonzo → Chocolaterie schedule on Jun 3)</div>
+          <div class="info-item"><strong>Yarra Valley Dairy</strong> &mdash; walk-in cheese tasting (optional, not on the Jun 3 plan but easy to swing by if time permits)</div>
           <div class="info-item"><strong>Brunetti, Innocent Bystander, The Healesville Hotel, New Shanghai</strong> &mdash; book the popular ones (Innocent Bystander, New Shanghai farewell dinner); walk-in for breakfast spots</div>
         </div>
         <div class="info-section"><h3>⚪ Free &mdash; no ticket needed</h3>
@@ -482,42 +482,43 @@ const DEFAULT_ITINERARY = [
     ],
   },
   {
-    label:'Jun 1 (Mon) \u2014 Warburton Redwood Forest + village wander',
+    label:'Jun 1 (Mon) \u2014 Redwood Forest + O\'Shannassy Aqueduct Trail',
     stops:['yv-redwood'],
-    transport:'Short drive (~10min) from Lady Protea to Redwood Forest carpark off Cement Creek Rd. Otherwise everything is walking distance in Warburton village.',
+    transport:'Short drive (~10min) from Lady Protea to Redwood Forest carpark off Cement Creek Rd. O\'Shannassy Trail Yuonga Rd carpark is ~3-5min drive west of Lady Protea. Both flat, easy access.',
     schedule:[
       {time:'08:30',activity:'Slow breakfast at Lady Protea (fireplace lit)'},
       {time:'10:00',activity:'Coffee in Warburton village \u2014 Three Sugars or Warburton Bakery'},
       {time:'11:00',activity:'Drive ~10min to Warburton Redwood Forest (Cement Creek Rd carpark)'},
       {time:'11:15',activity:'Walk through the California Redwoods \u2014 flat, magical, ~45min loop with photo stops'},
       {time:'12:30',activity:'Drive back to Warburton, lunch at Alpine Hotel (fireside) or pack a picnic'},
-      {time:'14:30',activity:'Yarra River bike trail or O\'Shannassy Aqueduct Trail walk \u2014 straight from Lady Protea'},
-      {time:'16:00',activity:'Fireplace at base, naps as needed, hot chocolate'},
+      {time:'14:30',activity:'Drive ~5min to Yuonga Rd carpark \u2014 O\'Shannassy Aqueduct Trail (the most accessible flat section)'},
+      {time:'14:45',activity:'Walk ~1.5km west along the aqueduct towards Millgrove \u2014 tree-ferns, mountain ash, gentle grade. Turn back when 4yo flags (~1hr total roundtrip).'},
+      {time:'16:00',activity:'Back at Lady Protea \u2014 fireplace, hot chocolate, naps'},
       {time:'18:30',activity:'Dinner \u2014 Alpine Hotel Warburton or cook at Lady Protea'},
     ],
   },
   {
-    label:'Jun 2 (Tue) \u2014 Healesville Sanctuary + Yering Station',
-    stops:['healesville','beechworth-bakery','yv-yering-station'],
-    transport:'Drive Warburton \u2192 Healesville Sanctuary (~40min west via Maroondah Hwy). After lunch, continue ~25min further west to Yering Station for an easy afternoon wander, then drive back ~50min to Warburton.',
+    label:'Jun 2 (Tue) \u2014 Healesville Sanctuary + chill afternoon',
+    stops:['healesville','beechworth-bakery'],
+    transport:'Drive Warburton \u2192 Healesville Sanctuary (~40min west via Maroondah Hwy). Single-day round trip \u2014 quiet weekday timing gives you the whole place near-empty. Yering Station moved to Jun 3 (it sits naturally with Zonzo).',
     schedule:[
-      {time:'07:30',activity:'Breakfast at Lady Protea (longer drive day, leave earlier)'},
-      {time:'08:15',activity:'Drive Warburton \u2192 Healesville Sanctuary'},
-      {time:'09:00',activity:'Sanctuary opens \u2014 Platypus House first (weekday = no queue!)'},
+      {time:'08:00',activity:'Breakfast at Lady Protea'},
+      {time:'08:30',activity:'Drive Warburton \u2192 Healesville Sanctuary (~40min)'},
+      {time:'09:15',activity:'Sanctuary opens \u2014 Platypus House first (weekday = no queue!). Tap Zoos Vic digital member card at gate.'},
       {time:'10:00',activity:'Tales from Platypus Creek show'},
       {time:'11:00',activity:'Spirits of the Sky bird show (outdoor amphitheatre)'},
-      {time:'12:30',activity:'Lunch in Healesville \u2014 Beechworth Bakery, My Little Kitchen, or Innocent Bystander (5min drive from sanctuary)'},
-      {time:'14:00',activity:'Drive ~25min west to Yering Station (Victoria\'s first vineyard, est. 1838)'},
-      {time:'14:30',activity:'Yering Station \u2014 cellar door + sculpture grounds + Matt\'s Bar (casual, kid-friendly). Lawns + valley views.'},
-      {time:'16:00',activity:'Drive ~50min back to Warburton (M3 \u2192 Warburton Hwy)'},
-      {time:'17:00',activity:'Arrive Lady Protea \u2014 kids nap, parents relax, fireplace on'},
+      {time:'12:00',activity:'Walking circuit \u2014 wombats, echidnas, dingoes, koalas'},
+      {time:'13:00',activity:'Lunch in Healesville \u2014 Beechworth Bakery, My Little Kitchen, or Innocent Bystander (5min drive from sanctuary)'},
+      {time:'14:30',activity:'Optional: Maroondah Reservoir Park (10min north of Healesville) \u2014 walk the dam wall, kids burn energy at the playground'},
+      {time:'15:30',activity:'Drive back to Warburton (~40min)'},
+      {time:'16:15',activity:'Arrive Lady Protea \u2014 kids nap, parents relax, fireplace on'},
       {time:'18:30',activity:'Dinner \u2014 Alpine Hotel Warburton or cook in'},
     ],
   },
   {
-    label:'Jun 3 (Wed) \u2014 Rayner\'s Orchard \u2192 Zonzo lunch \u2192 Chocolaterie',
-    stops:['yv-rayners','yv-zonzo','yv-chocolaterie'],
-    transport:'Morning: drive ~20min south from Warburton to Rayner\'s Orchard at Woori Yallock. After the tractor tour drive ~40min north-west to Zonzo Estate at Yarra Glen for the 13:00 lunch booking. Chocolaterie is 10min north of Zonzo. Return to Warburton ~1hr (M3 \u2192 Warburton Hwy).',
+    label:'Jun 3 (Wed) \u2014 Rayner\'s Orchard \u2192 Zonzo lunch \u2192 Yering Station',
+    stops:['yv-rayners','yv-zonzo','yv-yering-station'],
+    transport:'Morning: drive ~20min south from Warburton to Rayner\'s Orchard at Woori Yallock. After the tractor tour drive ~40min north-west to Zonzo Estate at Yarra Glen for the 13:00 lunch booking. Yering Station is just ~5-10min south of Zonzo. Return to Warburton ~1hr (Maroondah Hwy \u2192 Warburton Hwy).',
     schedule:[
       {time:'08:00',activity:'Breakfast at Lady Protea'},
       {time:'09:30',activity:'Drive Warburton \u2192 Rayner\'s Orchard, Woori Yallock (~20min)'},
@@ -526,10 +527,10 @@ const DEFAULT_ITINERARY = [
       {time:'11:45',activity:'Peach Cafe \u2014 PRE-ORDERED: 2\u00d7 Kids Cone peach ice cream + 1\u00d7 scone w/ jam & cream. Add 2 coffees on the day (~$36 total). Browse farm shop: peach pies, fruit leathers, jams for the road.'},
       {time:'12:15',activity:'Drive Rayner\'s \u2192 Zonzo Estate, Yarra Glen (~40min via Healesville-Koo Wee Rup Rd / Warburton Hwy)'},
       {time:'13:00',activity:'Zonzo Estate lunch booking \u2014 vineyard setting, kid-friendly, share-style Italian'},
-      {time:'14:45',activity:'Drive Zonzo \u2192 Yarra Valley Chocolaterie (~10min north)'},
-      {time:'15:00',activity:'Yarra Valley Chocolaterie \u2014 free tastings, playground with slides + swings, Junior Chocolatier class (45min, bookable)'},
-      {time:'16:30',activity:'Drive back to Warburton via Maroondah Hwy \u2192 Warburton Hwy (~1hr)'},
-      {time:'17:30',activity:'Arrive Lady Protea, pack for tomorrow\'s CBD transition'},
+      {time:'14:45',activity:'Drive Zonzo \u2192 Yering Station (~5-10min south)'},
+      {time:'15:00',activity:'Yering Station \u2014 Victoria\'s first vineyard (est. 1838). Cellar door + Matt\'s Bar + sculpture grounds. Kids run on lawns, parents taste wines, valley views.'},
+      {time:'16:15',activity:'Drive back to Warburton via Maroondah Hwy \u2192 Warburton Hwy (~1hr)'},
+      {time:'17:15',activity:'Arrive Lady Protea, pack for tomorrow\'s CBD transition'},
       {time:'19:00',activity:'Final Warburton dinner \u2014 Alpine Hotel or cook in'},
     ],
   },
